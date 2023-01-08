@@ -6,38 +6,53 @@ Se solicita:
   3- Armar un simulador interactivo, la estructura final del proyecto integrador.
 */
 
-// 1- Crear un algoritmo con 1 condicional.
 
-let msj, msjBienvenida, msjNombre, msjFelicitaciones;
+let msg, msgWelcome, msgName, msgCongrats, msgAge, age, name;
 
-msj =
-  "Hola, le damos la bienvenida al Colchon Bank. ingrese su nombre por favor: ingrese su edad por favor: felicitaciones usted ha ingresado correctamente.";
+msg =
+    "Hola, le damos la bienvenida al Colchon Bank. Ingrese su nombre por favor: Ingrese su edad por favor: felicitaciones usted ha ingresado correctamente.";
 
-msjBienvenida = msj.slice(0, 45);
-msjNombre = msj.slice(46, 74);
-msjEdad = msj.slice(75, 101);
-msjFelicitaciones = msj.slice(102, msj.length);
+msgWelcome = msg.slice(0, 45);
+msgName = msg.slice(46, 74);
+msgAge = msg.slice(75, 101);
+msgCongrats = msg.slice(102, msg.length);
 
-alert(msjBienvenida);
+alert(msgWelcome)
 
-let edad = 0;
-edad = prompt(msjEdad);
-
-if (edad >= 18) {
-  alert("Usted es mayor de edad, puede continuar en el sitio.");
-} else {
-  alert("Usted es menor de edad, salga de este sitio.");
+// verificar si la edad es un número válido
+function checkAge() {
+    age = parseInt(prompt(msgAge));
+    if (!isNaN(age) && age >= 1) {
+        return "Gracias."
+    } else {
+        // la edad es inválida
+        return prompt("La edad es inválida." + " " + msgAge);
+    }
 }
 
-// 2- Crear un algoritmo utilizando un ciclo.
+checkAge();
 
-let nombre = '';
+function checkAdult() {
+    if (age >= 18) {
+        return alert("Usted es mayor de edad, podrá realizar operaciones en este sitio.");
+    } else {
+        return alert("Usted es menor de edad, no podrá realizar operaciones en este sitio.");
+    }
+}
 
-do {
-  nombre = prompt(
-    "Tomamos una imagen de su rostro y estamos buscándolo en nuestra base de datos. Mientras tanto," +
-      " " +
-      msjNombre);
-} while (nombre == '');
+checkAdult();
 
-alert(nombre +', '+ msjFelicitaciones);
+name = '';
+
+function checkName() {
+    do {
+        name = prompt(
+            "Tomamos una imágen de su rostro y estamos buscándolo en nuestra base de datos. Mientras tanto," +
+            " " +
+            msgName);
+    } while (name == '');
+}
+
+checkName();
+
+alert(name + ', ' + msgCongrats);
