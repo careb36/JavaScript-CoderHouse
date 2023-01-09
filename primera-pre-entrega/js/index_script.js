@@ -3,7 +3,6 @@ Primera preentrega Curso de JavaScript de CoderHouse.
 Se solicita:
   1- Crear un algoritmo con 1 condicional.
   2- Crear un algoritmo utilizando un ciclo.
-  3- Armar un simulador interactivo, la estructura final del proyecto integrador.
 */
 
 
