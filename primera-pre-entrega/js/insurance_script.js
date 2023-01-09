@@ -5,6 +5,13 @@ Se solicita:
 */
 
 let msg, name, surname, age, vehicleBrand, vehicleYear, vehicleModel;
+let basePrice = 1000; // precio base para todos los vehículos
+let ageFactor = 100; // factor de edad
+let brandFactor = 100; // factor de marca
+let yearFactor = 100; // factor de año
+let modelFactor = 100; // factor de modelo
+let finalPrice = 0;
+
 
 function checkName() {
     do {
@@ -22,17 +29,9 @@ function checkSurname() {
 }
 checkSurname();
 
-function checkBrand() {
-    do {
-        vehicleBrand = prompt(
-            "Ingrese la marca de su vehículo por favor");
-    } while (vehicleBrand == '');
-}
-checkBrand();
-
 function checkAge() {
     age = parseInt(prompt("Ingrese su edad por favor"));
-    if (!isNaN(age) && age >= 1) {
+    if (!isNaN(age) && age >= 18) {
         return "Gracias."
     } else {
         return prompt("Su edad no es válida.");
@@ -40,14 +39,13 @@ function checkAge() {
 }
 checkAge();
 
-function checkAdult() {
-    if (age >= 18) {
-        return alert("Usted es mayor de edad, podrá cotizar su seguro.");
-    } else {
-        return alert("Usted es menor de edad, no podrá cotizar su seguro.");
-    }
+function checkBrand() {
+    do {
+        vehicleBrand = prompt(
+            "Ingrese la marca de su vehículo por favor");
+    } while (vehicleBrand == '');
 }
-checkAdult();
+checkBrand();
 
 function checkModel() {
     do {
@@ -59,65 +57,72 @@ checkModel();
 
 function checkYear() {
     vehicleYear = parseInt(prompt("Ingrese el año de su vehículo por favor."));
-    if (!isNaN(vehicleYear) && vehicleYear >= 1) {
+    if (!isNaN(vehicleYear) && vehicleYear >= 1900) {
         return "Gracias."
     } else {
-        return prompt("El año es inválido.");
+        return prompt("El año es inválido. Si es inferior al año 1900, deberá contactarse con nosotros.");
     }
 }
 checkYear();
 
-function quoteInsurance(age, vehicleBrand, vehicleYear, vehicleModel) {
-    let basePrice = 20000; // precio base para todos los vehículos
-    let ageFactor = age / 25; // factor de edad
-    let brandFactor = 1; // factor de marca
-    let yearFactor = 1; // factor de año
-    let modelFactor = 1; // factor de modelo
-
-    // ajuste del factor de edad
-    if (age < 25) {
-        ageFactor = 1.2;
-    } else if (age > 40) {
-        ageFactor = 0.8;
+function quoteAge(age) {
+    if (age >= 18 && age <= 21) {
+        ageFactor = 120;
+    } else {
+        ageFactor = 80;
     }
+}
+alert(ageFactor);
+quoteAge();
 
-    // ajuste del factor de marca
+function quoteBrand(vehicleBrand) {
     if (vehicleBrand === "Fiat") {
-        brandFactor = 1.5;
+        brandFactor = 150;
     } else if (vehicleBrand === "Renault") {
-        brandFactor = 1.8;
+        brandFactor = 180;
     } else if (vehicleBrand === "Chevrolet") {
-        brandFactor = 1.2;
+        brandFactor = 120;
     } else if (vehicleBrand === "Ford") {
-        brandFactor = 2.2;
+        brandFactor = 220;
     } else if (vehicleBrand === "Otra") {
-        brandFactor = 1;
+        brandFactor = 100;
     }
+}
+alert(brandFactor);
+quoteBrand();
 
-    // factor año
-    if (vehicleYear < 2000) {
-        yearFactor = 1.3;
+function quoteYear(vehicleYear) {
+    if (vehicleYear <= 2018) {
+        yearFactor = 80;
     } else if (vehicleYear > 2019) {
-        yearFactor = 0.7;
+        yearFactor = 130;
     }
+}
+alert(yearFactor);
+quoteYear();
 
-    // factor de modelo
+function quoteModel(vehicleModel) {
     if (vehicleModel === "Coupe") {
-        modelFactor = 1.2;
+        modelFactor = 120;
     } else if (vehicleModel === "SUV") {
-        modelFactor = 1.4;
+        modelFactor = 140;
     } else if (vehicleModel === "Truck") {
-        modelFactor = 1.6;
+        modelFactor = 160;
     } else if (vehicleModel === "Otro") {
-        modelFactor = 1.0;
+        modelFactor = 100;
     }
+}
+alert(modelFactor);
+quoteModel();
 
+    function quoteInsurance(basePrice, ageFactor, brandFactor, yearFactor, modelFactor) {
     // cálculo del precio final del seguro
-    let finalPrice = basePrice * ageFactor * brandFactor * yearFactor * modelFactor;
+    finalPrice = (basePrice * ageFactor * brandFactor * yearFactor * modelFactor)/100;
     return finalPrice;
 }
+alert(finalPrice);
 quoteInsurance();
 
-msg = (name+ " " + surname + " " + "según los datos proporcionados, usted posee un vehículo marca: " + vehicleBrand + ", modelo: " + vehicleModel + ", año: " + vehicleYear + "." + " La cotización de su seguro asciende a U$S: "+ finalPrice +" por un año.");
+msg = (name+ " " + surname + " " + "según los datos proporcionados, usted posee un vehículo marca: " + vehicleBrand + ", modelo: " + vehicleModel + ", año: " + vehicleYear + "." + " La cotización de su seguro asciende a U$S: "+ finalPrice + " por un año.");
 alert(msg);
 

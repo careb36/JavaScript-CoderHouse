@@ -9,7 +9,7 @@ Se solicita:
 let msg, msgWelcome, msgName, msgCongrats, msgAge, age, name;
 
 msg =
-    "Hola, le damos la bienvenida al Colchon Bank. Ingrese su nombre por favor: Ingrese su edad por favor: felicitaciones usted ha ingresado correctamente.";
+    "Hola, le damos la bienvenida a Mattress Bank. Ingrese su nombre por favor: Ingrese su edad por favor: felicitaciones usted ha ingresado correctamente.";
 
 msgWelcome = msg.slice(0, 45);
 msgName = msg.slice(46, 74);
@@ -41,14 +41,11 @@ function checkAdult() {
 
 checkAdult();
 
-name = '';
+name = 'Nombre';
 
 function checkName() {
     do {
-        name = prompt(
-            "Tomamos una imágen de su rostro y estamos buscándolo en nuestra base de datos. Mientras tanto," +
-            " " +
-            msgName);
+        name = prompt(msgName);
     } while (name == '');
 }
 
