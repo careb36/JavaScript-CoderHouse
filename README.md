@@ -1,34 +1,40 @@
-# Curso de JavaScript de CODERHOUSE
+![Unsplash|80](https://images.unsplash.com/photo-1543966888-7c1dc482a810?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1206&q=80)
 
-Fundamentos del lenguaje de programación JavaScript.
+---
+
+Curso de JavaScript de CODERHOUSE
+=================================
+
+> Fundamentos del lenguaje de programación JavaScript.
+> <br>
 
 ## ****Programa****
 
-### **Introducción a JavaScript + Onboarding**
+💻 **Introducción a JavaScript + Onboarding**
 
 December 13, 2022  
 
-### **1. Conceptos generales: Sintaxis y variables**
+💻 **1. Conceptos generales: Sintaxis y variables**
 
 December 15, 2022  
 
-### **2. Control de flujos**
+💻 **2. Control de flujos**
 
 December 20, 2022  
 
-### **3. Ciclos e iteraciones**
+💻 **3. Ciclos e iteraciones**
 
 December 22, 2022  
 
-### [**AfterClass] Vemos GitHub**
+💻 [**AfterClass] Vemos GitHub**
 
 December 26, 2022  
 
-### **4. Funciones**
+💻 **4. Funciones**
 
 January 3, 2023  
 
-### PREENTREGA **VENCE EL MARTES: Simulador interactivo**
+🌐 PREENTREGA **VENCE EL MARTES: Simulador interactivo**
 
 January 10, 2023  
 
@@ -36,56 +42,69 @@ January 10, 2023
 
 Primera preentrega del Proyecto Final de JavaScript
 
-### **5. Objetos**
+💻 **5. Objetos**
 
 January 5, 2023  
 
-### **[AfterClass] Objetos y funciones**
+💻 **[AfterClass] Objetos y funciones**
 
 January 9, 2023  
 
-### **6. Arrays**
+💻 **6. Arrays**
 
 January 10, 2023  
 
 January 12, 2023  
 
-### **7. Funciones de orden superior**
+💻 **7. Funciones de orden superior**
 
 January 12, 2023  
 
-### **8. DOM**
+💻 **8. DOM**
 
 January 17, 2023  
 
-### **9. Eventos**
+💻 **9. Eventos**
 
 January 19, 2023  
 
-### **10. Storage & JSON**
+💻 **10. Storage & JSON**
 
 January 24, 2023  
 
-### **11. Workshop**
+💻 **11. Workshop**
 
 January 26, 2023  
 
-### **12. Operadores avanzados**
+💻 **12. Operadores avanzados**
 
 January 31, 2023  
 
-### **13. Librerías**
+💻 **13. Librerías**
 
 February 2, 2023  
 
-### **14. Asincronía y promesas**
+💻 **14. Asincronía y promesas**
 
 February 7, 2023  
 
-### **15. Ajax & Fetch**
+💻 **15. Ajax & Fetch**
 
 February 9, 2023  
 
-### **16. Frameworks & NodeJS**
+🚀 **16. Frameworks & NodeJS**
 
 February 14, 2023
+
+
+______________________________________________
+### **Primera entrega del Proyecto Final**
+
+
+![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)[![Video en YouTube sobre la preentrega](https://cdn-icons-png.flaticon.com/128/3670/3670147.png)](https://youtu.be/7t9aAhskFQg)
+
+______________________________________________
+![Twitter Follow](https://img.shields.io/twitter/follow/Carorper?style=social)
+![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCdr0lQnh5usjjYgTIddu_bw?style=social) 
+🌐 [Linkedin](https://www.linkedin.com/in/carolinarpereira/) 
+🌐 [Medium](https://medium.com/@carolina.r.pereira)
