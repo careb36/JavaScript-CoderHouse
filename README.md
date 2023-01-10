@@ -113,6 +113,11 @@ ______________________________________________
 - [AfterClass] GitHub
 4. Funciones
 
+**Utilizo HTML, JavaScrip, Bootstrap, Webstorm y Chrome**
+
+![icons8|80](https://img.icons8.com/color/2x/html-5.png)![icons8|80](https://img.icons8.com/color/2x/javascript.png)![icons8|80](https://img.icons8.com/color/2x/bootstrap.png)![icons8|80](https://img.icons8.com/color/2x/webstorm.png)![icons8|80](https://img.icons8.com/color/2x/chrome--v3.png)
+
+
 ______________________________________________
 ![Twitter Follow](https://img.shields.io/twitter/follow/Carorper?style=social)
 ![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCdr0lQnh5usjjYgTIddu_bw?style=social)
