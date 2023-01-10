@@ -34,7 +34,7 @@ December 26, 2022
 
 January 3, 2023  
 
-🌐 PREENTREGA **VENCE EL MARTES: Simulador interactivo**
+🌐 **PREENTREGA: Simulador interactivo**
 
 January 10, 2023  
 
