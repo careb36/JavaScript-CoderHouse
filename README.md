@@ -103,7 +103,7 @@ ______________________________________________
 
 ![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)[![Video en YouTube sobre la preentrega](https://cdn-icons-png.flaticon.com/128/3670/3670147.png)](https://youtu.be/7t9aAhskFQg)
 
-#### **Este video enseña un sitio web creado según los requerimientos de la primera pre entrega del proyecto final del curso de JavaScript de CoderHouse que comencé el 13/12/22.**
+#### **Este video enseña un sitio web creado según los requerimientos de la primera pre entrega del proyecto final del curso de JavaScript de CoderHouse.**
 
 **Los temas incluidos para hacer un simulador interactivo son los dictados en las 4 primeras clases del curso:**
 
