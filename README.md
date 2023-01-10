@@ -94,7 +94,7 @@ February 14, 2023
 
 
 ______________________________________________
-###**Primera entrega del Proyecto Final**
+### **Primera entrega del Proyecto Final**
 
 
 ![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)[![Video en YouTube sobre la preentrega](https://cdn-icons-png.flaticon.com/128/3670/3670147.png)](https://youtu.be/7t9aAhskFQg)
