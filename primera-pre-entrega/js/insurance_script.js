@@ -1,26 +1,42 @@
 /*
-Primera preentrega Curso de JavaScript de CoderHouse.
-Se solicita:
-  3- Armar un simulador interactivo, la estructura final del proyecto integrador.
+This script request the user for their name, surname, age, vehicle brand, model, and year.
+It then calculates an insurance quote for the user based on the information provided.
 */
 
-let basePrice = 200; // precio base para todos los vehículos
+
+// Constant and variables that will be used as incident factors in the price of vehicle insurance.
+const basePrice = 200; // precio base para todos los vehículos
 let ageFactor = 1; // factor de edad
 let brandFactor = 1; // factor de marca
 let yearFactor = 1; // factor de año
 let modelFactor = 1; // factor de modelo
 let finalPrice = 300;
 
+
+/*
+Function to request the age of the user and verify that he is of legal age.
+Checks whether the user is old enough to perform operations on the site.
+The function then is called and the result is displayed to the user.
+*/
+
+// Function to request the user for their name and returns it.
 function checkName() {
     let name = prompt("Ingrese su nombre por favor");
     return name;
 }
 
+// Function to request the user for their surname and returns it.
 function checkSurname() {
     let surname = prompt("Ingrese su apellido por favor");
     return surname;
 }
 
+
+/*
+Function to request the user for their age and checks if the age is a valid number
+and if the user is 18 or older. If either of these conditions is not met,
+it returns an error message. If both conditions are met, it returns the age.
+*/
 function checkAge() {
     let age = parseInt(prompt("Ingrese su edad por favor"));
     if (!isNaN(age) && age >= 18) {
@@ -30,15 +46,21 @@ function checkAge() {
     }
 }
 
+// Function to request to the user for their vehicle brand and returns it.
 function checkBrand() {
     let vehicleBrand = prompt("Ingrese una marca de las siguientes opciones: Fiat o Renault o Chevrolet o Ford u Otra");
     return vehicleBrand;
 }
 
+// Function to request the user to the user for their vehicle model and returns it.
 function checkModel() {
     let vehicleModel = prompt("Ingrese un modelo de las siguientes opciones: Coupe o SUV o Truck u Otro");
     return vehicleModel;
 }
+
+// Function to request to the user for their vehicle year and checks if the year is a valid number and if it is 1900 or later.
+// If either of these conditions is not met, it returns an error message.
+// If both conditions are met, it returns the year.
 
 function checkYear() {
     let vehicleYear = parseInt(prompt("Ingrese el año de su vehículo por favor."));
@@ -49,6 +71,7 @@ function checkYear() {
     }
 }
 
+// Function to take the user's age and sets the ageFactor variable based on the age.
 function quoteAge(age) {
     if (age >= 18 && age <= 21) {
         ageFactor = 120;
@@ -57,6 +80,7 @@ function quoteAge(age) {
     }
 }
 
+// Function to take the user's vehicle brand and sets the brandFactor variable based on the brand.
 function quoteBrand(vehicleBrand) {
     if (vehicleBrand === "Fiat") {
         brandFactor = 0.15;
@@ -71,6 +95,7 @@ function quoteBrand(vehicleBrand) {
     }
 }
 
+// Function to take in the user's vehicle year and sets the yearFactor variable based on the year.
 function quoteYear(vehicleYear) {
     if (vehicleYear <= 2018) {
         yearFactor = 0.8;
@@ -79,6 +104,7 @@ function quoteYear(vehicleYear) {
     }
 }
 
+// Function to take the user's vehicle model and sets the modelFactor variable based on the model.
 function quoteModel(vehicleModel) {
     if (vehicleModel === "Coupe") {
         modelFactor = 0.12;
@@ -91,6 +117,8 @@ function quoteModel(vehicleModel) {
     }
 }
 
+// This function takes in the base price and the four factors and calculates the final price
+// of the insurance quote by multiplying all of the factors together. It then returns the final price.
 function quoteInsurance(basePrice, ageFactor, brandFactor, yearFactor, modelFactor) {
     finalPrice = (basePrice * ageFactor * brandFactor * yearFactor * modelFactor);
     return finalPrice;
@@ -107,9 +135,14 @@ quoteAge(age);
 quoteBrand(vehicleBrand);
 quoteYear(vehicleYear);
 quoteModel(vehicleModel);
-finalPrice = quoteInsurance(basePrice, ageFactor, brandFactor, yearFactor, modelFactor);
 
-let msg = `${name} ${surname}, según los datos proporcionados, usted posee un vehículo marca: ${vehicleBrand}, modelo: ${vehicleModel}, año: ${vehicleYear}. La cotización de su seguro asciende a U$S: ${finalPrice}.`;
+//Calls the quoteInsurance() function and passes in the basePrice and the four factors as arguments,
+// and assigns the returned value to the finalPrice variable.
+finalPrice = Math.round(quoteInsurance(basePrice, ageFactor, brandFactor, yearFactor, modelFactor));
+
+// Message using the user's name, surname, vehicle brand, model, and year, and
+// the final price of the insurance quote and displays to the user.
+let msg = `${name} ${surname}, según los datos proporcionados, usted posee un vehículo marca: ${vehicleBrand}, modelo: ${vehicleModel}, año: ${vehicleYear}. La cotización de su seguro asciende a U$S: ${finalPrice}. en una cuota anual`;
 
 alert(msg);
 
