@@ -105,6 +105,8 @@ ______________________________________________
 
 ______________________________________________
 ![Twitter Follow](https://img.shields.io/twitter/follow/Carorper?style=social)
-![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCdr0lQnh5usjjYgTIddu_bw?style=social) 
+![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCdr0lQnh5usjjYgTIddu_bw?style=social)
+
 🌐 [Linkedin](https://www.linkedin.com/in/carolinarpereira/) 
+
 🌐 [Medium](https://medium.com/@carolina.r.pereira)
