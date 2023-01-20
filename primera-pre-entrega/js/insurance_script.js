@@ -5,144 +5,125 @@ It then calculates an insurance quote for the user based on the information prov
 
 
 // Constant and variables that will be used as incident factors in the price of vehicle insurance.
-const basePrice = 200; // precio base para todos los vehículos
-let ageFactor = 1; // factor de edad
-let brandFactor = 1; // factor de marca
-let yearFactor = 1; // factor de año
-let modelFactor = 1; // factor de modelo
-let finalPrice = 300;
+const basePrice = 200; // base price for all vehicles
 
+// I use an object to store user data
+const user = {
+    name: '',
+    surname: '',
+    age: '',
+    vehicle: {
+        brand: '',
+        model: '',
+        year: ''
+    }
+};
 
-/*
-Function to request the age of the user and verify that he is of legal age.
-Checks whether the user is old enough to perform operations on the site.
-The function then is called and the result is displayed to the user.
-*/
+//I use objects to store the factors
+
+const ageFactors = {
+    '18-21': 120,
+    '22+': 80
+};
+
+const brandFactors = {
+    Fiat: 0.15,
+    Renault: 0.18,
+    Chevrolet: 0.12,
+    Ford: 0.22,
+    Otra: 0.1
+};
+
+const yearFactors = {
+    '1900-2018': 0.8,
+    '2019+': 0.9
+};
+
+const modelFactors = {
+    Coupe: 0.2,
+    SUV: 0.25,
+    Truck: 0.3,
+    Otro: 0.1
+};
+
+const validBrands = Object.keys(brandFactors);
+const validModels = Object.keys(modelFactors);
+
 
 // Function to request the user for their name and returns it.
-function checkName() {
-    let name = prompt("Ingrese su nombre por favor");
-    return name;
-}
+const checkName = () => {
+    user.name = prompt("Ingrese su nombre por favor");
+};
 
 // Function to request the user for their surname and returns it.
-function checkSurname() {
-    let surname = prompt("Ingrese su apellido por favor");
-    return surname;
-}
-
+const checkSurname = () => {
+    user.surname = prompt("Ingrese su apellido por favor");
+};
 
 /*
 Function to request the user for their age and checks if the age is a valid number
 and if the user is 18 or older. If either of these conditions is not met,
 it returns an error message. If both conditions are met, it returns the age.
 */
-function checkAge() {
-    let age = parseInt(prompt("Ingrese su edad por favor"));
-    if (!isNaN(age) && age >= 18) {
-        return age;
+const checkAge = () => {
+    user.age = parseInt(prompt("Ingrese su edad por favor"));
+    if (!isNaN(user.age) && user.age >= 18) {
+        return user.age;
     } else {
         return prompt("Su edad no es válida.");
     }
-}
+};
 
 // Function to request to the user for their vehicle brand and returns it.
-function checkBrand() {
-    let vehicleBrand = prompt("Ingrese una marca de las siguientes opciones: Fiat o Renault o Chevrolet o Ford u Otra");
-    return vehicleBrand;
-}
+const checkBrand = () => {
+    user.vehicle.brand = prompt("Ingrese una marca de las siguientes opciones: " + validBrands.join(', '));
+    if (!validBrands.includes(user.vehicle.brand)) {
+        return prompt("La marca seleccionada no es válida.");
+    }
+};
 
-// Function to request the user to the user for their vehicle model and returns it.
-function checkModel() {
-    let vehicleModel = prompt("Ingrese un modelo de las siguientes opciones: Coupe o SUV o Truck u Otro");
-    return vehicleModel;
-}
+// Function to request the user for their vehicle model and returns it.
+const checkModel = () => {
+    user.vehicle.model = prompt("Ingrese un modelo de las siguientes opciones: " + validModels.join(', '));
+    if (!validModels.includes(user.vehicle.model)) {
+        return prompt("El modelo seleccionado no es válida.");
+    }
+};
 
 // Function to request to the user for their vehicle year and checks if the year is a valid number and if it is 1900 or later.
 // If either of these conditions is not met, it returns an error message.
 // If both conditions are met, it returns the year.
 
-function checkYear() {
-    let vehicleYear = parseInt(prompt("Ingrese el año de su vehículo por favor."));
-    if (!isNaN(vehicleYear) && vehicleYear >= 1900) {
-        return vehicleYear;
+const checkYear = () => {
+    user.vehicle.year = parseInt(prompt("Ingrese el año de su vehículo por favor."));
+    if (!isNaN(user.vehicle.year) && user.vehicle.year >= 1900) {
+        return user.vehicle.year;
     } else {
         return prompt("El año es inválido. Si es inferior al año 1900, deberá contactarse telefónicamente al 23050055.");
     }
-}
+};
 
 // Function to take the user's age and sets the ageFactor variable based on the age.
-function quoteAge(age) {
-    if (age >= 18 && age <= 21) {
-        ageFactor = 120;
-    } else {
-        ageFactor = 80;
-    }
+const calculateQuote = () => {
+    let ageFactor = ageFactors[user.age < 22 ? '18-21' : '22+'];
+    let brandFactor = brandFactors[user.vehicle.brand];
+    let yearFactor = yearFactors[user.vehicle.year <= 2018 ? '1900-2018' : '2019+'];
+    let modelFactor = modelFactors[user.vehicle.model];
+    return basePrice + ageFactor + brandFactor + yearFactor + modelFactor;
 }
 
-// Function to take the user's vehicle brand and sets the brandFactor variable based on the brand.
-function quoteBrand(vehicleBrand) {
-    if (vehicleBrand === "Fiat") {
-        brandFactor = 0.15;
-    } else if (vehicleBrand === "Renault") {
-        brandFactor = 0.18;
-    } else if (vehicleBrand === "Chevrolet") {
-        brandFactor = 0.12;
-    } else if (vehicleBrand === "Ford") {
-        brandFactor = 0.22;
-    } else if (vehicleBrand === "Otra") {
-        brandFactor = 0.1;
-    }
-}
+// call the functions
+checkName();
+checkSurname();
+checkAge();
+checkBrand();
+checkModel();
+checkYear();
 
-// Function to take in the user's vehicle year and sets the yearFactor variable based on the year.
-function quoteYear(vehicleYear) {
-    if (vehicleYear <= 2018) {
-        yearFactor = 0.8;
-    } else if (vehicleYear > 2019) {
-        yearFactor = 0.3;
-    }
-}
+// sure calculate
+const finalPrice = calculateQuote();
 
-// Function to take the user's vehicle model and sets the modelFactor variable based on the model.
-function quoteModel(vehicleModel) {
-    if (vehicleModel === "Coupe") {
-        modelFactor = 0.12;
-    } else if (vehicleModel === "SUV") {
-        modelFactor = 0.14;
-    } else if (vehicleModel === "Truck") {
-        modelFactor = 0.16;
-    } else if (vehicleModel === "Otro") {
-        modelFactor = 0.1;
-    }
-}
+// user message
+alert(`${user.name} ${user.surname}, el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares americanos. Usted puede financiarlo hasta en 12 pagos mensuales.`);
 
-// This function takes in the base price and the four factors and calculates the final price
-// of the insurance quote by multiplying all of the factors together. It then returns the final price.
-function quoteInsurance(basePrice, ageFactor, brandFactor, yearFactor, modelFactor) {
-    finalPrice = (basePrice * ageFactor * brandFactor * yearFactor * modelFactor);
-    return finalPrice;
-}
-
-let name = checkName();
-let surname = checkSurname();
-let age = checkAge();
-let vehicleBrand = checkBrand();
-let vehicleModel = checkModel();
-let vehicleYear = checkYear();
-
-quoteAge(age);
-quoteBrand(vehicleBrand);
-quoteYear(vehicleYear);
-quoteModel(vehicleModel);
-
-//Calls the quoteInsurance() function and passes in the basePrice and the four factors as arguments,
-// and assigns the returned value to the finalPrice variable.
-finalPrice = Math.round(quoteInsurance(basePrice, ageFactor, brandFactor, yearFactor, modelFactor));
-
-// Message using the user's name, surname, vehicle brand, model, and year, and
-// the final price of the insurance quote and displays to the user.
-let msg = `${name} ${surname}, según los datos proporcionados, usted posee un vehículo marca: ${vehicleBrand}, modelo: ${vehicleModel}, año: ${vehicleYear}. La cotización de su seguro asciende a U$S: ${finalPrice}. en una cuota anual`;
-
-alert(msg);
 
