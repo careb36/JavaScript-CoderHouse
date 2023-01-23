@@ -27,10 +27,9 @@ const user = {
 
 //I use objects to store the factors: age, brand, year, model
 
-const minAge = 18;
 const ageFactors = {
-    [minAge + 1]: 120,
-    [minAge]: 80
+    '18-21': 120,
+    '22+': 80
 };
 
 const brandFactors = {
@@ -80,7 +79,7 @@ it returns an error message. If both conditions are met, it returns the age.
 */
 const checkAge = () => {
     user.age = parseInt(prompt("Ingrese su edad por favor"));
-    if (!isNaN(user.age) && user.age >= minAge) {
+    if (!isNaN(user.age) && user.age >= 18) {
         return user.age;
     } else {
         return prompt("Su edad no es válida.");
@@ -134,9 +133,9 @@ checkModel();
 checkYear();
 
 // insurance calculate
-const finalPrice = calculateQuote();
+const finalPrice = Math.round(calculateQuote());
 
 // user message
-alert(`${user.name} ${user.surname}, el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares americanos. Usted puede financiarlo hasta en 12 pagos mensuales.`);
+alert(`${user.name} ${user.surname} el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares americanos. Usted puede financiarlo hasta en 12 pagos mensuales.`);
 
 
