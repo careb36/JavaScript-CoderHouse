@@ -1,13 +1,19 @@
 /*
-This script request the user for their name, surname, age, vehicle brand, model, and year.
-It then calculates an insurance quote for the user based on the information provided.
+This script prompts the user for their name, surname, age, vehicle brand, model, and year.
+It uses arrow functions to handle each prompt and check for valid input and uses objects to store factors: ageFactors, brandFactors, yearFactors, and modelFactors.
+The script uses the Object.keys() method to create an array of vehicle brands and models to select from.
+A function takes all the user input and calculates a vehicle insurance quote.
 */
 
-
-// Constant and variables that will be used as incident factors in the price of vehicle insurance.
 const basePrice = 200; // base price for all vehicles
 
-// I use an object to store user data
+/*
+The Object class represents one of JavaScript's data types.
+It is used to store various keyed collections and more complex entities.
+Objects can be created using the Object() constructor or the object initializer / literal syntax
+ */
+
+// I use an object to store the user data
 const user = {
     name: '',
     surname: '',
@@ -19,11 +25,12 @@ const user = {
     }
 };
 
-//I use objects to store the factors
+//I use objects to store the factors: age, brand, year, model
 
+const minAge = 18;
 const ageFactors = {
-    '18-21': 120,
-    '22+': 80
+    [minAge + 1]: 120,
+    [minAge]: 80
 };
 
 const brandFactors = {
@@ -46,35 +53,41 @@ const modelFactors = {
     Otro: 0.1
 };
 
+/*
+Constants that store an array of valid vehicle brands and models respectively.
+These arrays are used later in the checkBrand and checkModel functions,
+to check if the brand or model entered by the user is included in the validBrands or validModels array, respectively.
+If the brand or model entered by the user is not included in the validBrands or validModels array, the function will return an error message.
+ */
 const validBrands = Object.keys(brandFactors);
 const validModels = Object.keys(modelFactors);
 
 
-// Function to request the user for their name and returns it.
+// Arrow function to request the user for their name
 const checkName = () => {
     user.name = prompt("Ingrese su nombre por favor");
 };
 
-// Function to request the user for their surname and returns it.
+// Arrow function to request the user for their surname.
 const checkSurname = () => {
     user.surname = prompt("Ingrese su apellido por favor");
 };
 
 /*
-Function to request the user for their age and checks if the age is a valid number
+Arrow function to request the user for their age and checks if the age is a valid number
 and if the user is 18 or older. If either of these conditions is not met,
 it returns an error message. If both conditions are met, it returns the age.
 */
 const checkAge = () => {
     user.age = parseInt(prompt("Ingrese su edad por favor"));
-    if (!isNaN(user.age) && user.age >= 18) {
+    if (!isNaN(user.age) && user.age >= minAge) {
         return user.age;
     } else {
         return prompt("Su edad no es válida.");
     }
 };
 
-// Function to request to the user for their vehicle brand and returns it.
+// Arrow function to request to the user for their vehicle brand and returns it.
 const checkBrand = () => {
     user.vehicle.brand = prompt("Ingrese una marca de las siguientes opciones: " + validBrands.join(', '));
     if (!validBrands.includes(user.vehicle.brand)) {
@@ -82,7 +95,7 @@ const checkBrand = () => {
     }
 };
 
-// Function to request the user for their vehicle model and returns it.
+// Arrow function to request the user for their vehicle model and returns it.
 const checkModel = () => {
     user.vehicle.model = prompt("Ingrese un modelo de las siguientes opciones: " + validModels.join(', '));
     if (!validModels.includes(user.vehicle.model)) {
@@ -90,7 +103,7 @@ const checkModel = () => {
     }
 };
 
-// Function to request to the user for their vehicle year and checks if the year is a valid number and if it is 1900 or later.
+// Arrow function to request to the user for their vehicle year and checks if the year is a valid number and if it is 1900 or later.
 // If either of these conditions is not met, it returns an error message.
 // If both conditions are met, it returns the year.
 
@@ -103,7 +116,7 @@ const checkYear = () => {
     }
 };
 
-// Function to take the user's age and sets the ageFactor variable based on the age.
+// Arrow function to take the user's age, brand,vehicle year, model and calculate the vehicle insurance quote
 const calculateQuote = () => {
     let ageFactor = ageFactors[user.age < 22 ? '18-21' : '22+'];
     let brandFactor = brandFactors[user.vehicle.brand];
@@ -120,7 +133,7 @@ checkBrand();
 checkModel();
 checkYear();
 
-// sure calculate
+// insurance calculate
 const finalPrice = calculateQuote();
 
 // user message

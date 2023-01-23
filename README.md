@@ -32,11 +32,7 @@ December 26, 2022
 
 💻 **4. Funciones**
 
-January 3, 2023  
-
-🌐 **PREENTREGA: Simulador interactivo**
-
-January 10, 2023  
+January 3, 2023
 
 💻 **5. Objetos**
 
@@ -48,9 +44,7 @@ January 9, 2023
 
 💻 **6. Arrays**
 
-January 10, 2023  
-
-January 12, 2023  
+January 10, 2023
 
 💻 **7. Funciones de orden superior**
 
@@ -93,30 +87,47 @@ February 9, 2023
 February 14, 2023
 
 
-______________________________________________
-### **Primera entrega del Proyecto Final**
+___
+### **Primera entrega del Proyecto Final 10-01-23**
 
 
-![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)[![Video en YouTube sobre la preentrega](https://cdn-icons-png.flaticon.com/128/3670/3670147.png)](https://youtu.be/7t9aAhskFQg)
+![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)[![Video en YouTube sobre la preentrega](https://cdn-icons-png.flaticon.com/128/3670/3670147.png)](https://youtu.be/7t9aAhskFQg)
 
 #### **Este video enseña un sitio web creado según los requerimientos de la primera pre entrega del proyecto final del curso de JavaScript de CoderHouse.**
 
 **Los temas incluidos para hacer un simulador interactivo son los dictados en las 4 primeras clases del curso:**
 
-1. Conceptos generales: Sintaxis y variables
-2. Control de flujos
-3. Ciclos e iteraciones
-- [AfterClass] GitHub
-4. Funciones
+1. Conceptos generales: Sintaxis y variables.
+2. Control de flujos.
+3. Ciclos e iteraciones.
+- [AfterClass] GitHub.
+4. Funciones.
 
-**Utilizo HTML, JavaScrip, Bootstrap, Webstorm y Chrome**
+
+___
+### **Segunda entrega del Proyecto Final 24-01-23**
+
+En esta etapa se solicita la entrega de la estructura del proyecto, las variables necesarias y los objetos de JS.
+
+#### **Objetivos generales:**
+
+* Codificar la funcionalidad inicial del simulador.
+* Identificar el flujo de trabajo del script en términos de captura de entradas ingresadas por el usuario, procesamiento esencial del simulador y notificación de resultados en forma de salida.
+
+**Los temas incluidos para continuar con el simulador son:**
+
+1. Objetos
+- [AfterClass] Objetos y funciones**
+2. Arrays
+3. Funciones de orden superior**
+___
+
+**Tecnologías / herramientas utilizadas HTML, JavaScrip, Bootstrap, Webstorm y Chrome:**
 
 ![icons8|80](https://img.icons8.com/color/2x/html-5.png)![icons8|80](https://img.icons8.com/color/2x/javascript.png)![icons8|80](https://img.icons8.com/color/2x/bootstrap.png)![icons8|80](https://img.icons8.com/color/2x/webstorm.png)![icons8|80](https://img.icons8.com/color/2x/chrome--v3.png)
 
 
 ______________________________________________
-![Twitter Follow](https://img.shields.io/twitter/follow/Carorper?style=social)
-![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCdr0lQnh5usjjYgTIddu_bw?style=social)
 
 🌐 [Linkedin](https://www.linkedin.com/in/carolinarpereira/) 
 
