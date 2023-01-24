@@ -13,8 +13,8 @@ It is used to store various keyed collections and more complex entities.
 Objects can be created using the Object() constructor or the object initializer / literal syntax
  */
 
-// I use an object to store the user data
-const user = {
+// I use an object to store the user data. The user object includes the vehicle.
+let user = {
     name: '',
     surname: '',
     age: '',
@@ -64,12 +64,12 @@ const validModels = Object.keys(modelFactors);
 
 // Arrow function to request the user for their name
 const checkName = () => {
-    user.name = prompt("Ingrese su nombre por favor");
+    user["name"] = prompt("Ingrese su nombre por favor");
 };
 
 // Arrow function to request the user for their surname.
 const checkSurname = () => {
-    user.surname = prompt("Ingrese su apellido por favor");
+    user["surname"] = prompt("Ingrese su apellido por favor");
 };
 
 /*
@@ -79,8 +79,8 @@ it returns an error message. If both conditions are met, it returns the age.
 */
 const checkAge = () => {
     user.age = parseInt(prompt("Ingrese su edad por favor"));
-    if (!isNaN(user.age) && user.age >= 18) {
-        return user.age;
+    if (!isNaN(user["age"]) && user["age"] >= 18) {
+        return user["age"];
     } else {
         return prompt("Su edad no es válida.");
     }
@@ -88,16 +88,16 @@ const checkAge = () => {
 
 // Arrow function to request to the user for their vehicle brand and returns it.
 const checkBrand = () => {
-    user.vehicle.brand = prompt("Ingrese una marca de las siguientes opciones: " + validBrands.join(', '));
-    if (!validBrands.includes(user.vehicle.brand)) {
+    user["vehicle"]["brand"] = prompt("Ingrese una marca de las siguientes opciones: " + validBrands.join(', '));
+    if (!validBrands.includes(user["vehicle"]["brand"])) {
         return prompt("La marca seleccionada no es válida.");
     }
 };
 
 // Arrow function to request the user for their vehicle model and returns it.
 const checkModel = () => {
-    user.vehicle.model = prompt("Ingrese un modelo de las siguientes opciones: " + validModels.join(', '));
-    if (!validModels.includes(user.vehicle.model)) {
+    user["vehicle"]["model"] = prompt("Ingrese un modelo de las siguientes opciones: " + validModels.join(', '));
+    if (!validModels.includes(user["vehicle"]["model"])) {
         return prompt("El modelo seleccionado no es válida.");
     }
 };
@@ -107,9 +107,9 @@ const checkModel = () => {
 // If both conditions are met, it returns the year.
 
 const checkYear = () => {
-    user.vehicle.year = parseInt(prompt("Ingrese el año de su vehículo por favor."));
-    if (!isNaN(user.vehicle.year) && user.vehicle.year >= 1900) {
-        return user.vehicle.year;
+    user["vehicle"]["year"] = parseInt(prompt("Ingrese el año de su vehículo por favor."));
+    if (!isNaN(user["vehicle"]["year"]) && user.vehicle.year >= 1900) {
+        return user["vehicle"]["year"];
     } else {
         return prompt("El año es inválido. Si es inferior al año 1900, deberá contactarse telefónicamente al 23050055.");
     }
@@ -117,10 +117,10 @@ const checkYear = () => {
 
 // Arrow function to take the user's age, brand,vehicle year, model and calculate the vehicle insurance quote
 const calculateQuote = () => {
-    let ageFactor = ageFactors[user.age < 22 ? '18-21' : '22+'];
-    let brandFactor = brandFactors[user.vehicle.brand];
-    let yearFactor = yearFactors[user.vehicle.year <= 2018 ? '1900-2018' : '2019+'];
-    let modelFactor = modelFactors[user.vehicle.model];
+    let ageFactor = ageFactors[user["age"] < 22 ? '18-21' : '22+'];
+    let brandFactor = brandFactors[user["vehicle"]["brand"]];
+    let yearFactor = yearFactors[user["vehicle"]["year"] <= 2018 ? '1900-2018' : '2019+'];
+    let modelFactor = modelFactors[user["vehicle"]["model"]];
     return basePrice + ageFactor + brandFactor + yearFactor + modelFactor;
 }
 
@@ -136,6 +136,6 @@ checkYear();
 const finalPrice = Math.round(calculateQuote());
 
 // user message
-alert(`${user.name} ${user.surname} el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares americanos. Usted puede financiarlo hasta en 12 pagos mensuales.`);
+alert(`${user["name"]} ${user.surname} el precio final para el seguro de su ${user["vehicle"]["brand"]} ${user["vehicle"]["model"]} del año ${user["vehicle"]["year"]} es de ${finalPrice} dólares.`);
 
 
