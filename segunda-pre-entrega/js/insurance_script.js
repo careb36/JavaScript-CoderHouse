@@ -27,29 +27,28 @@ let user = {
 
 //I use objects to store the factors: age, brand, year, model
 
-const ageFactors = {
-    '18-21': 120,
-    '22+': 80
-};
-
-const brandFactors = {
-    Fiat: 0.15,
-    Renault: 0.18,
-    Chevrolet: 0.12,
-    Ford: 0.22,
-    Otra: 0.1
-};
-
-const yearFactors = {
-    '1900-2018': 0.8,
-    '2019+': 0.9
-};
-
-const modelFactors = {
-    Coupe: 0.2,
-    SUV: 0.25,
-    Truck: 0.3,
-    Otro: 0.1
+const factors = {
+    age: {
+        '18-21': 120,
+        '22+': 80
+    },
+    brand: {
+        Fiat: 0.15,
+        Renault: 0.18,
+        Chevrolet: 0.12,
+        Ford: 0.22,
+        Otra: 0.1
+    },
+    year: {
+        '1900-2018': 0.8,
+        '2019+': 0.9
+    },
+    model: {
+        Coupe: 0.2,
+        SUV: 0.25,
+        Truck: 0.3,
+        Otro: 0.1
+    }
 };
 
 /*
@@ -58,8 +57,8 @@ These arrays are used later in the checkBrand and checkModel functions,
 to check if the brand or model entered by the user is included in the validBrands or validModels array, respectively.
 If the brand or model entered by the user is not included in the validBrands or validModels array, the function will return an error message.
  */
-const validBrands = Object.keys(brandFactors);
-const validModels = Object.keys(modelFactors);
+const validBrands = Object.keys(factors.brand);
+const validModels = Object.keys(factors.model);
 
 
 // Arrow function to request the user for their name
@@ -136,10 +135,10 @@ const checkYear = () => {
 
 // Arrow function to take the user's age, brand,vehicle year, model and calculate the vehicle insurance quote
 const calculateQuote = () => {
-    let ageFactor = ageFactors[user["age"] < 22 ? '18-21' : '22+'];
-    let brandFactor = brandFactors[user["vehicle"]["brand"]];
-    let yearFactor = yearFactors[user["vehicle"]["year"] <= 2018 ? '1900-2018' : '2019+'];
-    let modelFactor = modelFactors[user["vehicle"]["model"]];
+    let ageFactor = factors.age[user["age"] < 22 ? '18-21' : '22+'];
+    let brandFactor = factors.brand[user["vehicle"]["brand"]];
+    let yearFactor = factors.year[user["vehicle"]["year"] <= 2018 ? '1900-2018' : '2019+'];
+    let modelFactor = factors.model[user["vehicle"]["model"]];
     return basePrice + ageFactor + brandFactor + yearFactor + modelFactor;
 }
 
@@ -152,7 +151,7 @@ checkModel();
 checkYear();
 
 // insurance calculate
-const finalPrice = Math.round(calculateQuote());
+let finalPrice = Math.round(calculateQuote());
 
 // user message
 alert(`${user["name"]} ${user.surname} el precio final para el seguro de su ${user["vehicle"]["brand"]} ${user["vehicle"]["model"]} del año ${user["vehicle"]["year"]} es de ${finalPrice} dólares.`);
