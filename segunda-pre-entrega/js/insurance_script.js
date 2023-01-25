@@ -64,12 +64,22 @@ const validModels = Object.keys(modelFactors);
 
 // Arrow function to request the user for their name
 const checkName = () => {
-    user["name"] = prompt("Ingrese su nombre por favor");
+    let name = prompt("Ingrese su nombre por favor");
+    while (!name) {
+        alert("Por favor ingrese un nombre válido");
+        name = prompt("Ingrese su nombre por favor");
+    }
+    user["name"] = name;
 };
 
 // Arrow function to request the user for their surname.
 const checkSurname = () => {
-    user["surname"] = prompt("Ingrese su apellido por favor");
+    let surname = prompt("Ingrese su apellido por favor");
+    while (!surname) {
+        alert("Por favor ingrese un apellido válido");
+        surname = prompt("Ingrese su apellido por favor");
+    }
+    user["surname"] = surname;
 };
 
 /*
@@ -78,28 +88,36 @@ and if the user is 18 or older. If either of these conditions is not met,
 it returns an error message. If both conditions are met, it returns the age.
 */
 const checkAge = () => {
-    user.age = parseInt(prompt("Ingrese su edad por favor"));
-    if (!isNaN(user["age"]) && user["age"] >= 18) {
-        return user["age"];
+    const age = prompt("Ingrese su edad por favor");
+    if (!isNaN(age) && age >= 18) {
+        user.age = age;
+        return user.age;
     } else {
-        return prompt("Su edad no es válida.");
+        alert("Su edad no es válida, por favor ingrese su edad nuevamente");
+        return checkAge();
     }
 };
 
 // Arrow function to request to the user for their vehicle brand and returns it.
 const checkBrand = () => {
-    user["vehicle"]["brand"] = prompt("Ingrese una marca de las siguientes opciones: " + validBrands.join(', '));
-    if (!validBrands.includes(user["vehicle"]["brand"])) {
-        return prompt("La marca seleccionada no es válida.");
+    let brand = prompt("Ingrese una marca de las siguientes opciones: " + validBrands.join(', '));
+    while (!validBrands.includes(brand)) {
+        alert("La marca seleccionada no es válida, por favor ingrese una marca válida");
+        brand = prompt("Ingrese una marca de las siguientes opciones: " + validBrands.join(', '));
     }
+    user["vehicle"]["brand"] = brand;
+    return brand;
 };
 
 // Arrow function to request the user for their vehicle model and returns it.
 const checkModel = () => {
-    user["vehicle"]["model"] = prompt("Ingrese un modelo de las siguientes opciones: " + validModels.join(', '));
-    if (!validModels.includes(user["vehicle"]["model"])) {
-        return prompt("El modelo seleccionado no es válida.");
+    let model = prompt("Ingrese un modelo de las siguientes opciones: " + validModels.join(', '));
+    while (!validModels.includes(model)) {
+        alert("El modelo seleccionado no es válido, por favor ingrese un modelo válido");
+        model = prompt("Ingrese un modelo de las siguientes opciones: " + validModels.join(', '));
     }
+    user["vehicle"]["model"] = model;
+    return model;
 };
 
 // Arrow function to request to the user for their vehicle year and checks if the year is a valid number and if it is 1900 or later.
@@ -107,12 +125,13 @@ const checkModel = () => {
 // If both conditions are met, it returns the year.
 
 const checkYear = () => {
-    user["vehicle"]["year"] = parseInt(prompt("Ingrese el año de su vehículo por favor."));
-    if (!isNaN(user["vehicle"]["year"]) && user.vehicle.year >= 1900) {
-        return user["vehicle"]["year"];
-    } else {
-        return prompt("El año es inválido. Si es inferior al año 1900, deberá contactarse telefónicamente al 23050055.");
+    let year = prompt("Ingrese el año de su vehículo por favor.");
+    while (!isNaN(user["vehicle"]["year"]) && user.vehicle.year > 1900) {
+        alert("El año no es válido, por favor ingrese un año válido");
+        year = prompt("Ingrese el año de su vehículo por favor.");
     }
+    user["vehicle"]["year"] = year;
+    return year;
 };
 
 // Arrow function to take the user's age, brand,vehicle year, model and calculate the vehicle insurance quote
@@ -137,5 +156,3 @@ const finalPrice = Math.round(calculateQuote());
 
 // user message
 alert(`${user["name"]} ${user.surname} el precio final para el seguro de su ${user["vehicle"]["brand"]} ${user["vehicle"]["model"]} del año ${user["vehicle"]["year"]} es de ${finalPrice} dólares.`);
-
-
