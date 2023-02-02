@@ -122,7 +122,7 @@ En esta etapa se solicita la entrega de la estructura del proyecto, las variable
 3. Funciones de orden superior**
 ___
 
-**Tecnologías / herramientas utilizadas HTML, JavaScrip, Bootstrap, Webstorm y Chrome:**
+**Tecnologías / herramientas utilizadas HTML, JavaScript, Bootstrap, Webstorm y Chrome:**
 
 ![icons8|80](https://img.icons8.com/color/2x/html-5.png)![icons8|80](https://img.icons8.com/color/2x/javascript.png)![icons8|80](https://img.icons8.com/color/2x/bootstrap.png)![icons8|80](https://img.icons8.com/color/2x/webstorm.png)![icons8|80](https://img.icons8.com/color/2x/chrome--v3.png)
 
