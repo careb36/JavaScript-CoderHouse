@@ -94,7 +94,7 @@
     <div class="row align-items-center">
         <div class="col-sm-4 justify-content-center py-1 my-1">
             <div class="card" style="width: auto; height: 28rem; background-color: rgb(0, 89, 179);">
-                <img src="/segunda-pre-entrega/pictures/galeria-autos.jpeg"
+                <img src="../pictures/galeria-autos.jpeg"
                      class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="text-white">Conocé las coberturas de Seguros de vehículos del Mattress Bank y encontrá la
@@ -104,7 +104,7 @@
         </div>
         <div class="col-sm-4 justify-content-center py-1 my-1">
             <div class="card" style="width: auto; height: 28rem; background-color: rgb(0, 89, 179);">
-                <img src="/segunda-pre-entrega/pictures/galeria-motos.jpeg"
+                <img src="../pictures/galeria-motos.jpeg"
                      class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="text-white">Conocé las coberturas de Seguros de motocicletas del Mattress Bank y encontrá
@@ -114,7 +114,7 @@
         </div>
         <div class="col-sm-4 justify-content-center py-1 my-1">
             <div class="card" style="width: auto; height: 28rem; background-color: rgb(0, 89, 179);">
-                <img src="/segunda-pre-entrega/pictures/galeria-inmuebles.jpeg"
+                <img src="../pictures/galeria-inmuebles.jpeg"
                      class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="text-white">Conocé las coberturas de Seguros de inmuebles del Mattress Bank y encontrá la
@@ -138,65 +138,136 @@
         </div>
         <div class="col-sm-8 justify-content-center py-1 my-1 border-1">
 
-            <form class="row g-3">
+            <form class="row g-3" id="vInsurance">
                 <div class="col-md-6 py-1 my-1">
                     <label class="form-label">Nombres</label>
-                    <input type="text" class="form-control" placeholder="Nombres" aria-label="First name"></div>
+                    <input type="text" name="name" class="form-control" aria-label="First name"></div>
                 <div class="col-md-6 py-1 my-1">
                     <label class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" placeholder="Apellidos" aria-label="Apellidos"></div>
+                    <input type="text" name="surname" class="form-control" aria-label="Apellidos"></div>
+                    <div class="col-md-6 py-1 my-1">
+                    <label class="form-label">Edad</label>
+                    <input type="number" min="18" name="edad" class="form-control" aria-label="First name"></div>
                 <div class="col-md-6 py-1 my-1">
                     <label class="form-label">Teléfono</label>
-                    <input type="text" class="form-control" placeholder="Teléfono" aria-label="Teléfono"></div>
-                <div class="col-md-6 py-1 my-1">
-                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                    <input type="tel" name="tel" class="form-control"  aria-label="Teléfono"></div>
+                <div class="col-md-5 py-1 my-1">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="exampleFormControlInput1"
                            placeholder="nombre@ejemplo.com">
                 </div>
-                <div class="col-12 py-1 my-1">
+                <div class="col-7 py-1 my-1">
                     <label for="inputAddress2" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="inputAddress2"
+                    <input type="text" name="address" class="form-control" id="inputAddress2"
                            placeholder="Calle, Número de Puerta, Casa o Apto...">
                 </div>
                 <div class="col-md-5 py-2 my-2">
                     <label for="inputDepartment" class="form-label">Departamento</label>
                     <select id="inputDepartment" class="form-select">
                         <option selected>Seleccione...</option>
-                        <option>...</option>
+                        <option>Artigas</option>
+                        <option>Canelones</option>
+                        <option>Cerro Largo</option>
+                        <option>Colonia</option>
+                        <option>Durazno</option>
+                        <option>Flores</option>
+                        <option>Florida</option>
+                        <option>Lavalleja</option>
+                        <option>Maldonado</option>
+                        <option>Montevideo</option>
+                        <option>Paysandú</option>
+                        <option>Río Negro</option>
+                        <option>Rivera</option>
+                        <option>Rocha</option>
+                        <option>Salto</option>
+                        <option>San José</option>
+                        <option>Soriano</option>
+                        <option>Tacuarembó</option>
+                        <option>Treinta y Tres</option>
                     </select>
                 </div>
                 <div class="col-md-5 py-2 my-2">
                     <label for="inputCity" class="form-label">Ciudad</label>
                     <select id="inputCity" class="form-select">
                         <option selected>Seleccione...</option>
-                        <option>...</option>
+                        <option>Artigas</option>
+                        <option>Canelones</option>
+                        <option>Melo</option>
+                        <option>Colonia</option>
+                        <option>Durazno</option>
+                        <option>Trinidad</option>
+                        <option>Florida</option>
+                        <option>Minas</option>
+                        <option>Maldonado</option>
+                        <option>Montevideo</option>
+                        <option>Paysandú</option>
+                        <option>Fray Bentos</option>
+                        <option>Rivera</option>
+                        <option>Rocha</option>
+                        <option>Salto</option>
+                        <option>San José</option>
+                        <option>Mercedes</option>
+                        <option>Tacuarembó</option>
+                        <option>Treinta y Tres</option>
                     </select>
                 </div>
                 <div class="col-md-2 py-2 my-2">
                     <label for="inputZip" class="form-label">Código Postal</label>
-                    <input type="text" class="form-control" id="inputZip">
+                    <input type="text" name="zip" class="form-control" id="inputZip">
                 </div>
                 <div class="col-md-3 py-2 my-2">
                     <label for="inputBrand" class="form-label">Marca</label>
                     <select id="inputBrand" class="form-select">
                         <option selected>Seleccione...</option>
-                        <option>...</option>
+                        <option>Ferrari</option>
+                        <option>Mercedez-Benz</option>
+                        <option>Lamborghini</option>
+                        <option>BMW</option>
+                        <option>Audi</option>
+                        <option>Toyota</option>
+                        <option>Nissan</option>
+                        <option>Renault</option>
+                        <option>Citroen</option>
+                        <option>Ford</option>                       
+                        <option>Volkswagen</option>
+                        <option>Fiat</option>
+                        <option>Chevrolet</option>   
+                        <option>Onix Plus</option>
+                        <option>Joy</option>                     
+                        <option>Otra</option>
                     </select>
                 </div>
                 <div class="col-md-3 py-2 my-2">
                     <label for="inputModel" class="form-label">Modelo</label>
                     <select id="inputModel" class="form-select">
                         <option selected>Seleccione...</option>
-                        <option>...</option>
+                        <option>Purosangue</option>
+                        <option>Serie 1</option>
+                        <option>GLA</option>
+                        <option>CLE</option>
+                        <option>Aventador</option>
+                        <option>A3 Allstreet</option>
+                        <option>Corolla</option>
+                        <option>RAV4</option>
+                        <option>Ariya</option>
+                        <option>X-Trail</option>
+                        <option>Townstar</option>
+                        <option>Clio</option>
+                        <option>Captur</option>
+                        <option>Panda</option>
+                        <option>Punto</option>
+                        <option>C3</option>
+                        <option>C4X</option>
+                        <option>C5 Aircross Hybrid 180</option>
+                        <option>Kuga</option>
+                        <option>Puma</option>
+                        <option>Tiguan</option>
+                        <option>otro</option>
                     </select>
                 </div>
                 <div class="col-md-3 py-2 my-2">
                     <label for="inputYear" class="form-label">Año</label>
-                    <select id="inputYear" class="form-select">
-                        <option selected>Seleccione...</option>
-                        <option>...</option>
-                    </select>
-                </div>
+                     <input type="date" min="1980-01-01" name="year" class="form-control" aria-label="Year"></div>    
                 <div class="col-md-3 py-2 my-2">
                     <label for="inputVersion" class="form-label">Versión</label>
                     <select id="inputVersion" class="form-select">
@@ -226,7 +297,7 @@
             </div>
             <div class="col-sm-8 justify-content-center py-1 my-1 border-1">
 
-                <form class="row g-3">
+                <form class="row g-3" id="mInsurance">
                     <div class="col-md-6 py-1 my-1">
                         <label class="form-label">Nombres</label>
                         <input type="text" class="form-control" placeholder="Nombres" aria-label="First name"></div>
@@ -320,7 +391,7 @@
                 </div>
                 <div class="col-sm-8 justify-content-center py-1 my-1 border-1">
 
-                    <form class="row g-3">
+                    <form class="row g-3" id="eInsurance">
                         <div class="col-md-6 py-1 my-1">
                             <label class="form-label">Nombres</label>
                             <input type="text" class="form-control" placeholder="Nombres" aria-label="First name"></div>

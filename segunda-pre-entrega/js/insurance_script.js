@@ -5,6 +5,19 @@ The script uses the Object.keys() method to create an array of vehicle brands an
 A function takes all the user input and calculates a vehicle insurance quote.
 */
 
+const vInsuranceForm = document.querySelector("#vInsurance"); // Get the form element
+vInsuranceForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Prevent the form from submitting
+    let name = vInsuranceForm.elements.name.value; // Get the name input value
+    let surname = vInsuranceForm.elements.surname.value; // Get the surname input value
+    let age = vInsuranceForm.elements.age.value; // Get the age input value
+    let brand = vInsuranceForm.elements.brand.value; // Get the brand input value
+    let model = vInsuranceForm.elements.model.value; // Get the model input value
+    let year = vInsuranceForm.elements.year.value; // Get the year input value    
+    calculateQuote(); // Call the calculateQuote function
+    
+}
+
 const basePrice = 200; // base price for all vehicles
 
 /*
@@ -60,6 +73,7 @@ If the brand or model entered by the user is not included in the validBrands or 
 const validBrands = Object.keys(factors.brand);
 const validModels = Object.keys(factors.model);
 
+/*
 
 // Arrow function to request the user for their name
 const checkName = () => {
@@ -80,12 +94,15 @@ const checkSurname = () => {
     }
     user["surname"] = surname;
 };
+*/
 
 /*
 Arrow function to request the user for their age and checks if the age is a valid number
 and if the user is 18 or older. If either of these conditions is not met,
 it returns an error message. If both conditions are met, it returns the age.
 */
+
+/*
 const checkAge = () => {
     const age = prompt("Ingrese su edad por favor");
     if (!isNaN(age) && age >= 18) {
@@ -133,6 +150,8 @@ const checkYear = () => {
     return year;
 };
 
+*/
+
 // Arrow function to take the user's age, brand,vehicle year, model and calculate the vehicle insurance quote
 const calculateQuote = () => {
     let ageFactor = factors.age[user["age"] < 22 ? '18-21' : '22+'];
@@ -142,6 +161,7 @@ const calculateQuote = () => {
     return basePrice + ageFactor + brandFactor + yearFactor + modelFactor;
 }
 
+/*
 // call the functions
 checkName();
 checkSurname();
@@ -149,6 +169,8 @@ checkAge();
 checkBrand();
 checkModel();
 checkYear();
+
+*/
 
 // insurance calculate
 let finalPrice = Math.round(calculateQuote());
