@@ -20,7 +20,6 @@ let user = {
 };
 
 //I use objects to store the factors: age, brand, year, model
-
 const factors = {
   age: {
     "18-21": 120,
@@ -53,6 +52,17 @@ const factors = {
   },
 };
 
+// Store the user object in local storage
+localStorage.setItem("objectKey", JSON.stringify({ key: "value" }));
+
+// Retrieve the user object from local storage
+let storedUser = JSON.parse(localStorage.getItem("objectKey"));
+
+// If the user object is not found in local storage, use the default object
+if (!storedUser) {
+  storedUser = user;
+}
+
 // Arrow function to take the user's age, brand,vehicle year, model and calculate the vehicle insurance quote
 const calculateQuote = () => {
   const basePrice = 50; // base price for all vehicles
@@ -70,15 +80,23 @@ const submitButton = document.querySelector("#submitButtonV"); // Get the specif
 const vInsuranceForm = document.querySelector("#vInsurance"); // Get the form elements using its id
 let selBrand = document.querySelector("#vInsuranceBrand");
 let selModel = document.querySelector("#vInsuranceModel");
-const modal = document.querySelector('.modal');
-const modalBody = document.querySelector('.modal-body');
+const modal = document.querySelector(".modal");
+const modalBody = document.querySelector(".modal-body");
+
+// Store the quote result as a variable instead of recalculating it every time
+let quoteResult;
 
 submitButton.addEventListener("click", (e) => {
-  e.preventDefault();  
+  e.preventDefault();
   // Check if all form fields are filled
-  if (!vInsuranceForm.elements.name.value || !vInsuranceForm.elements.surname.value || !vInsuranceForm.elements.age.value || !vInsuranceForm.elements.year.value) {
+  if (
+    !vInsuranceForm.elements.name.value ||
+    !vInsuranceForm.elements.surname.value ||
+    !vInsuranceForm.elements.age.value ||
+    !vInsuranceForm.elements.year.value
+  ) {
     alert("Por favor, complete todos los campos del formulario.");
-  return;
+    return;
   }
   user.name = vInsuranceForm.elements.name.value;
   user.surname = vInsuranceForm.elements.surname.value;
@@ -86,22 +104,24 @@ submitButton.addEventListener("click", (e) => {
   user.vehicle.year = vInsuranceForm.elements.year.value;
   user.vehicle.brand = selBrand.options[selBrand.selectedIndex].text;
   user.vehicle.model = selModel.options[selModel.selectedIndex].text;
-  let finalPrice = Math.round(calculateQuote());
-  const quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares.`;
+
+  // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
+  if (!quoteResult) {
+    let finalPrice = Math.round(calculateQuote());
+    quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares.`;
+  }
 
   modalBody.innerHTML = quoteResult;
-  modal.classList.add('show');
-  modal.setAttribute('aria-modal', 'true');
-  modal.style.display = 'block';
-  document.body.classList.add('modal-open');
-
+  modal.classList.add("show");
+  modal.setAttribute("aria-modal", "true");
+  modal.style.display = "block";
+  document.body.classList.add("modal-open");
 });
 
-const btnClose = document.querySelector('.btn-close');
-btnClose.addEventListener('click', function() {
-  modal.classList.remove('show');
-  modal.removeAttribute('aria-modal');
-  modal.style.display = 'none';
-  document.body.classList.remove('modal-open');
+const btnClose = document.querySelector(".btn-close");
+btnClose.addEventListener("click", function () {
+  modal.classList.remove("show");
+  modal.removeAttribute("aria-modal");
+  modal.style.display = "none";
+  document.body.classList.remove("modal-open");
 });
-
