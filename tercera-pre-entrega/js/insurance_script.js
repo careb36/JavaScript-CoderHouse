@@ -52,18 +52,10 @@ const factors = {
   },
 };
 
-// Store the user object in local storage
-localStorage.setItem("objectKey", JSON.stringify({ key: "value" }));
-
-// Retrieve the user object from local storage
-let storedUser = JSON.parse(localStorage.getItem("objectKey"));
-
-// If the user object is not found in local storage, use the default object
-if (!storedUser) {
-  storedUser = user;
-}
-
-// Arrow function to take the user's age, brand,vehicle year, model and calculate the vehicle insurance quote
+/**
+ * @description This function calculates the insurance quote
+ * @returns {number} The final price
+ */
 const calculateQuote = () => {
   const basePrice = 50; // base price for all vehicles
   user.age = parseInt(user.age, 10); //using parseInt with a radix of 10 to ensure these values are correctly parsed as integers
@@ -78,13 +70,27 @@ const calculateQuote = () => {
 
 const submitButton = document.querySelector("#submitButtonV"); // Get the specific submit button element using its id
 const vInsuranceForm = document.querySelector("#vInsurance"); // Get the form elements using its id
-let selBrand = document.querySelector("#vInsuranceBrand");
-let selModel = document.querySelector("#vInsuranceModel");
-const modal = document.querySelector(".modal");
-const modalBody = document.querySelector(".modal-body");
+let selBrand = document.querySelector("#vInsuranceBrand"); // Get the select element using its id
+let selModel = document.querySelector("#vInsuranceModel"); // Get the select element using its id
+const modal = document.querySelector(".modal"); // Get the modal element using its class
+const modalBody = document.querySelector(".modal-body"); // Get the modal body element using its class
 
 // Store the quote result as a variable instead of recalculating it every time
 let quoteResult;
+
+let storedUser = JSON.parse(localStorage.getItem("userStorage"));
+
+// If the user object is not found in local storage, use the default object
+if (storedUser) {
+  //llenar cada campo del formulario con los datos del usuario
+  vInsuranceForm.elements.name.value = storedUser.name;
+  vInsuranceForm.elements.surname.value = storedUser.surname;
+  vInsuranceForm.elements.age.value = storedUser.age;
+  vInsuranceForm.elements.year.value = storedUser.vehicle.year;
+  selBrand.value = storedUser.vehicle.brand;
+  selModel.value = storedUser.vehicle.model;
+  console.log("storedUser found");
+}
 
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -98,12 +104,30 @@ submitButton.addEventListener("click", (e) => {
     alert("Por favor, complete todos los campos del formulario.");
     return;
   }
+  // Retrieve the user object from local storage
   user.name = vInsuranceForm.elements.name.value;
   user.surname = vInsuranceForm.elements.surname.value;
   user.age = vInsuranceForm.elements.age.value;
   user.vehicle.year = vInsuranceForm.elements.year.value;
   user.vehicle.brand = selBrand.options[selBrand.selectedIndex].text;
   user.vehicle.model = selModel.options[selModel.selectedIndex].text;
+  console.log("storedUser not found");
+
+  // Store the user object in local storage
+  localStorage.setItem(
+    "userStorage",
+    JSON.stringify({
+      name: user.name,
+      surname: user.surname,
+      age: user.age,
+      email: user.email,
+      vehicle: {
+        brand: user.vehicle.brand,
+        model: user.vehicle.model,
+        year: user.vehicle.year,
+      },
+    })
+  );
 
   // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
   if (!quoteResult) {
