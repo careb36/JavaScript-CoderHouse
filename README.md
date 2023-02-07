@@ -121,6 +121,28 @@ En esta etapa se solicita la entrega de la estructura del proyecto, las variable
 2. Arrays
 3. Funciones de orden superior**
 ___
+### **Tercera entrega del Proyecto Final 07-02-23**
+
+En esta etapa se solicita agregar y entregar uso de JSON y Storage, y DOM y eventos del usuario.
+
+#### **Objetivos generales:**
+
+* Codificar funciones de procesos esenciales y notificación de resultados por HTML, añadiendo interacción al simulador.
+* Ampliar y refinar el flujo de trabajo del script en términos de captura de eventos, procesamiento del simulador y notificación de resultados en forma de salidas por HTML, modificando el DOM.
+
+#### **Objetivos específicos:**
+
+* Definir eventos a manejar y su función de respuesta.
+* Modificar el DOM, ya sea para definir elementos al cargar la página o para realizar salidas de un procesamiento.
+* Almacenar datos (clave-valor) en el Storage y recuperarlos
+
+**Los temas incluidos para continuar con el simulador son:**
+
+1. DOM
+2. Eventos
+- [AfterClass] Funciones de Orden Superior + DOM
+3. Storage & JSON
+___
 
 **Tecnologías / herramientas utilizadas HTML, JavaScript, Bootstrap, Webstorm y Chrome:**
 
