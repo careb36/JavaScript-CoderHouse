@@ -141,19 +141,19 @@
             <form class="row g-3" name="vInsurance" id="vInsurance">
                 <div class="col-md-6 py-1 my-1">
                     <label class="form-label">Nombres</label>
-                    <input type="text" name="name" class="form-control" aria-label="First name"></div>
+                    <input type="text" name="name" class="form-control" aria-label="First name" id="vInsurance"></div>
                 <div class="col-md-6 py-1 my-1">
                     <label class="form-label">Apellidos</label>
-                    <input type="text" name="surname" class="form-control" aria-label="Apellidos"></div>
+                    <input type="text" name="surname" class="form-control" aria-label="Apellidos" id="vInsurance"></div>
                     <div class="col-md-6 py-1 my-1">
                     <label class="form-label">Edad</label>
                     <input type="number" min="18" max="70" name="age" id="vInsurance" class="form-control" aria-label="First name"></div>
                 <div class="col-md-6 py-1 my-1">
                     <label class="form-label">Teléfono</label>
-                    <input type="tel" name="tel" class="form-control"  aria-label="Teléfono"></div>
+                    <input type="tel" name="tel" class="form-control"  aria-label="Teléfono" id="vInsurance"></div>
                 <div class="col-md-5 py-1 my-1">
                     <label class="form-label">Email</label>
-                    <input type="text" name="email" class="form-control" id="vInsurance"
+                    <input type="email" name="email" class="form-control" id="vInsurance"
                            placeholder="nombre@ejemplo.com">
                 </div>
                 <div class="col-7 py-1 my-1">
@@ -163,7 +163,7 @@
                 </div>
                 <div class="col-md-5 py-2 my-2">
                     <label for="inputDepartment" class="form-label">Departamento</label>
-                    <select id="vInsurance" class="form-select">
+                    <select id="vInsuranceDepartment" name="department" class="form-select">
                         <option selected>Seleccione...</option>
                         <option>Artigas</option>
                         <option>Canelones</option>
@@ -188,7 +188,7 @@
                 </div>
                 <div class="col-md-5 py-2 my-2">
                     <label for="inputCity" class="form-label">Ciudad</label>
-                    <select id="vInsurance" class="form-select">
+                    <select id="vInsuranceCity" name="city" class="form-select">
                         <option selected>Seleccione...</option>
                         <option>Artigas</option>
                         <option>Canelones</option>
@@ -217,7 +217,7 @@
                 </div>
                 <div class="col-md-4 py-2 my-2">
                     <label for="inputBrand" class="form-label">Marca</label>
-                    <select id="vInsuranceBrand" class="form-select">
+                    <select id="vInsuranceBrand" name="brand" class="form-select">
                         <option selected>Seleccione...</option>
                         <option>Ferrari</option>
                         <option>MercedezBenz</option>
@@ -239,7 +239,7 @@
                 </div>
                 <div class="col-md-4 py-2 my-2">
                     <label for="inputModel" class="form-label">Modelo</label>
-                    <select id="vInsuranceModel" class="form-select">
+                    <select id="vInsuranceModel" name="model" class="form-select">
                         <option selected>Seleccione...</option>
                         <option>Coupe</option>
                         <option>SUV</option>
