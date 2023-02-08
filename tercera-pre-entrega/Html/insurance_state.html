@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mattress Bank</title>
     <!-- This defer attribute is set to indicate to a browser that the script is meant to be executed after the document has been parsed, but before firing-->
-    <script src="../js/insurance_state_script.js" defer></script>
+    <script src="../js/insurance_vehicle_script.js" defer></script>
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -97,7 +97,7 @@
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" href="insurance_vehicle.html">Vehículos</a>
+                        <a class="nav-link" aria-current="true" href="insurance_vehicle.html">Vehículos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="insurance_moto.html">Motocicletas</a>
@@ -115,24 +115,23 @@
                                 Inmuebles
                             </div>
                         </span>
-                    </div>
-                <div class="row align-items-center">
-                    <div class="col-sm-2 py-5 my-5">
-                    </div>
-                    <div class="col-sm-8 justify-content-center py-1 my-1 border-1">
+                        <div class="row align-items-center">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-8 justify-content-center py-1 my-1 border-1">
 
                         <form class="row g-3" name="eInsurance" id="eInsurance">
                             <div class="col-md-6 py-1 my-1">
                                 <label class="form-label">Nombres</label>
-                                <input type="text" class="form-control" aria-label="First name">
+                                <input type="text" class="form-control" placeholder="Nombres" aria-label="First name">
                             </div>
                             <div class="col-md-6 py-1 my-1">
                                 <label class="form-label">Apellidos</label>
-                                <input type="text" class="form-control" aria-label="Apellidos">
+                                <input type="text" class="form-control" placeholder="Apellidos" aria-label="Apellidos">
                             </div>
                             <div class="col-md-6 py-1 my-1">
                                 <label class="form-label">Teléfono</label>
-                                <input type="text" class="form-control" aria-label="Teléfono">
+                                <input type="text" class="form-control" placeholder="Teléfono" aria-label="Teléfono">
                             </div>
                             <div class="col-md-6 py-1 my-1">
                                 <label for="exampleFormControlInput1" class="form-label">Email</label>
@@ -178,22 +177,21 @@
                     <div class="col-sm-2 py-1 my-1">
                     </div>
                 </div>
-            </div>
+                    </div>
                     <!-- cards -->
                 <div class="row align-items-center py-xxl-3 my-xxl-3">
                     <div class="row-cols-xxl-auto justify-content-center">
                         <div class="card" style="width:fit-content; height: auto; background-color: rgb(0, 89, 179);">
+                            <img src="../pictures/galeria-inmuebles.jpeg" class="card-img-top" alt="Imagen de vehiculos estacionados">
                             <div class="card-body">
                                 <h4 class="card-title text-white py-1 my-2">Seguros de inmuebles</h4>
-                                <p class="text-white">Conocé las coberturas de Seguros de inmuebles del Mattress Bank y
-                                    encontrá
-                                    la
-                                    que mejor se adapte a tus necesidades.</p>
+                                <p class="text-white">Conocé las coberturas de Seguros de inmuebles del Mattress
+                                    Bank y encontrá la que mejor se adapte a tus necesidades.</p>
                             </div>
-                            <img src="../pictures/galeria-inmuebles.jpeg" class="card-img-top" alt="Varias edificios de colores">
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
 
         <!-- Modal -->
@@ -212,13 +210,12 @@
                 </div>
             </div>
         </div>
-</body>
-<!-- bootstrap script -->
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-crossorigin="anonymous"
-></script>
+        <!-- bootstrap script -->
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"
+  ></script>
 </body>
 
 <!-- footer -->
@@ -259,4 +256,5 @@ crossorigin="anonymous"
         <p>© 2023 Carolina Pereira. All rights reserved.</p>
     </div>
 </footer>
+
 </html>
