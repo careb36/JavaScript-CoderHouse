@@ -35,6 +35,7 @@ const factors = {
   },
   brand: {
     Ferrari: 0.9,
+    Lamborghini: 0.9,
     MercedezBenz: 0.8,
     BMW: 0.8,
     Audi: 0.8,

@@ -1,4 +1,3 @@
-/*
 //variables
 let msg, msgWelcome, msgName, msgCongrats, msgAge, name;
 
@@ -19,8 +18,6 @@ Function to request the age of the user and verify that he is of legal age.
 Checks whether the user is old enough to perform operations on the site.
 The function then is called and the result is displayed to the user.
 */
-
-/*
 
 function checkAge() {
     let age = parseInt(prompt(msgAge));
@@ -47,6 +44,3 @@ checkName();
 
 // The user's name is displayed to the user with a congrats message.
 alert(name + ', ' + msgCongrats);
-
-*/
-
