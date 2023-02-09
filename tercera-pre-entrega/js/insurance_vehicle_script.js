@@ -89,24 +89,24 @@ const modalBody = document.querySelector(".modal-body"); // Get the modal body e
 // Store the quote result as a variable instead of recalculating it every time.
 let quoteResult;
 
-// in the variable storedUser stores the items from user object in local storage and convert it to JSON string using JSON.stringify method.
-let storedUser = JSON.parse(localStorage.getItem("userStorage"));
+// in the variable storedUserV stores the items from user object in local storage and convert it to JSON string using JSON.stringify method.
+let storedUserV = JSON.parse(localStorage.getItem("userStorageV"));
 
 // If the user object is not found in local storage, create a new one and store it in local storage
 // Otherwise, use the stored user object
-if (storedUser) {
-  vInsuranceForm.elements.name.value = storedUser.name;
-  vInsuranceForm.elements.surname.value = storedUser.surname;
-  vInsuranceForm.elements.age.value = storedUser.age;
-  vInsuranceForm.elements.tel.value = storedUser.tel;
-  vInsuranceForm.elements.email.value = storedUser.email;
-  vInsuranceForm.elements.address.value = storedUser.address;
-  selDepartment.value = storedUser.department;
-  selCity.value = storedUser.city;
-  vInsuranceForm.elements.zip.value = storedUser.zip;
-  selBrand.value = storedUser.vehicle.brand;
-  selModel.value = storedUser.vehicle.model;
-  vInsuranceForm.elements.year.value = storedUser.vehicle.year;
+if (storedUserV) {
+  vInsuranceForm.elements.name.value = storedUserV.name;
+  vInsuranceForm.elements.surname.value = storedUserV.surname;
+  vInsuranceForm.elements.age.value = storedUserV.age;
+  vInsuranceForm.elements.tel.value = storedUserV.tel;
+  vInsuranceForm.elements.email.value = storedUserV.email;
+  vInsuranceForm.elements.address.value = storedUserV.address;
+  selDepartment.value = storedUserV.department;
+  selCity.value = storedUserV.city;
+  vInsuranceForm.elements.zip.value = storedUserV.zip;
+  selBrand.value = storedUserV.vehicle.brand;
+  selModel.value = storedUserV.vehicle.model;
+  vInsuranceForm.elements.year.value = storedUserV.vehicle.year;
 }
 
 /**
@@ -147,7 +147,7 @@ submitButton.addEventListener("click", (e) => {
 
   // Store the user object in local storage
   localStorage.setItem(
-    "userStorage",
+    "userStorageV",
     JSON.stringify({
       name: user.name,
       surname: user.surname,

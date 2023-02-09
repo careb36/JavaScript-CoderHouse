@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mattress Bank</title>
+    <!-- This defer attribute is set to indicate to a browser that the script is meant to be executed after the document has been parsed, but before firing-->
+    <script src="../js/insurance_moto_script.js" defer></script>
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -233,11 +235,11 @@
                                     </div>
                                     <div class="col-md-4 py-2 my-2">
                                         <label for="inputYear" class="form-label">Año</label>
-                                        <input type="number" min="1950" max="2023" id="mInsurance" name="year"
+                                        <input type="number" min="1950" id="mInsurance" name="year"
                                             class="form-control" aria-label="Year">
                                     </div>
                                     <div class="d-grid gap-2">
-                                        <button type="submit" id="submitButtonV"
+                                        <button type="submit" id="submitButtonM"
                                             class="btn btn-outline-primary">Cotizar</button>
                                     </div>
                                 </form>
