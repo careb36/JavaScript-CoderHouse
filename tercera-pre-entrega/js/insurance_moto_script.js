@@ -168,7 +168,7 @@ submitButton.addEventListener("click", (e) => {
   // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
   if (!quoteResult) {
     let finalPrice = Math.round(calculateQuote());
-    quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.motorcycle.brand} ${user.motorcycle.model} del año ${user.motorcycle.year} es de ${finalPrice} dólares.`;
+    quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.motorcycle.brand} ${user.motorcycle.model} del año ${user.motorcycle.year} es de ${finalPrice} dólares, al año.`;
   }
 
   modalBody.innerHTML = quoteResult;

@@ -66,7 +66,7 @@ const factors = {
  * @returns {number} The final price. It is the sum of the base price and the factors.
  */
 const calculateQuote = () => {
-  const basePrice = 50; // base price for all vehicles
+  const basePrice = 5; // base price for all vehicles
   user.age = parseInt(user.age, 10); //using parseInt with a radix of 10 to ensure these values are correctly parsed as integers
   user.vehicle.year = parseInt(user.vehicle.year, 10); //using parseInt with a radix of 10 to ensure these values are correctly parsed as integers
   let ageFactor = factors.age[user.age < 22 ? "18-21" : "22+"];
@@ -74,7 +74,7 @@ const calculateQuote = () => {
   let yearFactor =
     factors.year[user.vehicle.year <= 2018 ? "1950-2018" : "2019+"];
   let modelFactor = factors.model[user.vehicle.model] || 0.1;
-  return basePrice + ageFactor + brandFactor + yearFactor + modelFactor;
+  return basePrice * (ageFactor + brandFactor + yearFactor + modelFactor);
 };
 
 const submitButton = document.querySelector("#submitButtonV"); // Get the specific submit button element using its id
@@ -169,7 +169,7 @@ submitButton.addEventListener("click", (e) => {
   // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
   if (!quoteResult) {
     let finalPrice = Math.round(calculateQuote());
-    quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares.`;
+    quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares, al año.`;
   }
 
   modalBody.innerHTML = quoteResult;
