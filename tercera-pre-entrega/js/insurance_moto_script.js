@@ -60,6 +60,48 @@ const factors = {
   },
 };
 
+// departments object to store the departments and cities.
+const departments = {
+  Artigas: ['Artigas'],
+  Canelones: ['Canelones'],
+  CerroLargo: ['Melo'],
+  Colonia: ['Colonia'],
+  Durazno: ['Durazno'],
+  Flores: ['Trinidad'],
+  Florida: ['Florida'],
+  Lavalleja: ['Minas'],
+  Maldonado: ['Maldonado'],
+  Montevideo: ['Montevideo'],
+  Paysandú: ['Paysandú'],
+  RíoNegro: ['FrayBentos'],
+  Rivera: ['Rivera'],
+  Rocha: ['Rocha'],
+  Salto: ['Salto'],
+  SanJosé: ['SanJosé'],
+  Soriano: ['Mercedes'],
+  Tacuarembó: ['Tacuarembó'],
+  TreintayTres: ['TreintayTres'],
+};
+
+const departmentSelect = document.getElementById('mInsuranceDepartment');
+const citySelect = document.getElementById('mInsuranceCity');
+
+/**
+ * @description This function makes that cities are added when the department is selected.
+ * @returns {void}
+ */
+departmentSelect.addEventListener('change', () => {
+  const selectedDepartment = departmentSelect.value;
+  const cities = departments[selectedDepartment];
+  citySelect.innerHTML = '';
+  if (cities.length > 0) {
+    citySelect.innerHTML = cities
+      .map(city => `<option>${city}</option>`)
+      .join('');
+    citySelect.value = cities[0];
+  }
+});
+
 /**
  * @description This function calculates the insurance quote. 
  * @returns {number} The final price. It is the sum of the base price and the factors.
