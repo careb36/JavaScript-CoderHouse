@@ -8,6 +8,7 @@ so that if they revisit the page, their information will still be there.
 The code also uses DOM manipulation to display the quote result in a modal.
 */
 
+
 // I use an object to store the user data. The user object includes the motorcycle.
 let user = {
   name: "",
@@ -24,6 +25,7 @@ let user = {
     model: "",
     year: 0,
   },
+  quotes:[], // I use an array to store the quotes.
 };
 
 // I use objects to store the factors : age, brand, year, model. 
@@ -156,6 +158,7 @@ if (storedUserM) {
  */
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
+
   // Check if all form fields are filled
   if (
     !mInsuranceForm.elements.name.value ||
@@ -170,9 +173,14 @@ submitButton.addEventListener("click", (e) => {
     !mInsuranceForm.elements.model.value ||
     !mInsuranceForm.elements.year.value
   ) {
-    alert("Por favor, complete todos los campos del formulario.");
+    Swal.fire({
+      title: "Error",
+      text: "Por favor, complete todos los campos del formulario.",
+      icon: "error",
+    });
     return;
   }
+
   // Retrieve the user object from local storage
   user.name = mInsuranceForm.elements.name.value;
   user.surname = mInsuranceForm.elements.surname.value;
@@ -206,26 +214,31 @@ submitButton.addEventListener("click", (e) => {
       },
     })
   );
+  // Show loading animation for 2 seconds
+  Swal.fire({
+    title: "Cotizando",
+    html: "Estamos procesando tu cotización...",
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  }).then(() => {
+    // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
+    if (!quoteResult) {
+      let finalPrice = Math.round(calculateQuote());
+      quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.motorcycle.brand} ${user.motorcycle.model} del año ${user.motorcycle.year} es de ${finalPrice} dólares, al año.`;
+    }
 
-  // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
-  if (!quoteResult) {
-    let finalPrice = Math.round(calculateQuote());
-    quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.motorcycle.brand} ${user.motorcycle.model} del año ${user.motorcycle.year} es de ${finalPrice} dólares, al año.`;
-  }
-
-  modalBody.innerHTML = quoteResult;
-  modal.classList.add("show");
-  modal.setAttribute("aria-modal", "true");
-  modal.style.display = "block";
-  document.body.classList.add("modal-open");
-});
-
-const btnClose = document.querySelector(".btn-close");
-btnClose.addEventListener("click", function () {
-  modal.classList.remove("show");
-  modal.removeAttribute("aria-modal");
-  modal.style.display = "none";
-  document.body.classList.remove("modal-open");
+    // Show SweetAlert with the quote result
+    Swal.fire({
+      icon: "success",
+      title: "Cotización generada",
+      html: `<p>${quoteResult}</p>`,
+    });
+  });
 });
 
 /*

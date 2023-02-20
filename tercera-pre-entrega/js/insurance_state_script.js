@@ -23,6 +23,7 @@ let user = {
     year: 1900,
     department: "",
   },
+  quotes:[], // I use an array to store the quotes.
 };
 
 // I use objects to store the factors : typeofstate, year, department.
@@ -169,10 +170,14 @@ submitButton.addEventListener("click", (e) => {
     !sInsuranceForm.elements.zip.value ||
     !sInsuranceForm.elements.typeofstate.value ||
     !sInsuranceForm.elements.year.value
-  ) {
-    alert("Por favor, complete todos los campos del formulario.");
-    return;
-  }
+    ) {
+      Swal.fire({
+        title: "Error",
+        text: "Por favor, complete todos los campos del formulario.",
+        icon: "error",
+      });
+      return;
+    }
   // Retrieve the user object from local storage
   user.name = sInsuranceForm.elements.name.value;
   user.surname = sInsuranceForm.elements.surname.value;
@@ -209,27 +214,28 @@ submitButton.addEventListener("click", (e) => {
     })
   );
 
-  /**
-   * @description check if quoteResult is defined, if so, show the modal with the quote result, otherwise, calculate the quote and show the modal.
-   * @param {object} user The user object.
-   */
+// Show loading animation for 2 seconds
+Swal.fire({
+  title: "Cotizando",
+  html: "Estamos procesando tu cotización...",
+  allowOutsideClick: false,
+  allowEscapeKey: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading();
+  },
+}).then(() => {
+  // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
   if (!quoteResult) {
     let finalPrice = Math.round(calculateQuote());
     quoteResult = `${user.name} ${user.surname}, el precio final para el seguro de su ${user.state.typeofstate} construido en ${user.state.year} en ${user.state.department}, Uruguay, es de ${finalPrice} dólares, al año.`;
   }
-
-  modalBody.innerHTML = quoteResult;
-  modal.classList.add("show");
-  modal.setAttribute("aria-modal", "true");
-  modal.style.display = "block";
-  document.body.classList.add("modal-open");
+  // Show SweetAlert with the quote result
+  Swal.fire({
+    icon: "success",
+    title: "Cotización generada",
+    html: `<p>${quoteResult}</p>`,
+  });
 });
-
-const btnClose = document.querySelector(".btn-close");
-btnClose.addEventListener("click", function () {
-  modal.classList.remove("show");
-  modal.removeAttribute("aria-modal");
-  modal.style.display = "none";
-  document.body.classList.remove("modal-open");
 });
-

@@ -24,9 +24,10 @@ let user = {
     model: "",
     year: 0,
   },
+  insurances: [], // I use an array to store the insurances.
 };
 
-// I use objects to store the factors : age, brand, year, model. 
+// I use objects to store the factors : age, brand, year, model.
 // This factors are used to calculate the final price of the insurance.
 const factors = {
   age: {
@@ -63,48 +64,52 @@ const factors = {
 
 // departments object to store the departments and cities.
 const departments = {
-  Artigas: ['Artigas'],
-  Canelones: ['Canelones'],
-  CerroLargo: ['Melo'],
-  Colonia: ['Colonia'],
-  Durazno: ['Durazno'],
-  Flores: ['Trinidad'],
-  Florida: ['Florida'],
-  Lavalleja: ['Minas'],
-  Maldonado: ['Maldonado'],
-  Montevideo: ['Montevideo'],
-  Paysandú: ['Paysandú'],
-  RíoNegro: ['FrayBentos'],
-  Rivera: ['Rivera'],
-  Rocha: ['Rocha'],
-  Salto: ['Salto'],
-  SanJosé: ['SanJosé'],
-  Soriano: ['Mercedes'],
-  Tacuarembó: ['Tacuarembó'],
-  TreintayTres: ['TreintayTres'],
+  Artigas: ["Artigas"],
+  Canelones: ["Canelones"],
+  CerroLargo: ["Melo"],
+  Colonia: ["Colonia"],
+  Durazno: ["Durazno"],
+  Flores: ["Trinidad"],
+  Florida: ["Florida"],
+  Lavalleja: ["Minas"],
+  Maldonado: ["Maldonado"],
+  Montevideo: ["Montevideo"],
+  Paysandú: ["Paysandú"],
+  RíoNegro: ["FrayBentos"],
+  Rivera: ["Rivera"],
+  Rocha: ["Rocha"],
+  Salto: ["Salto"],
+  SanJosé: ["SanJosé"],
+  Soriano: ["Mercedes"],
+  Tacuarembó: ["Tacuarembó"],
+  TreintayTres: ["TreintayTres"],
 };
 
-const departmentSelect = document.getElementById('vInsuranceDepartment');
-const citySelect = document.getElementById('vInsuranceCity');
+const departmentSelect = document.getElementById("vInsuranceDepartment");
+const citySelect = document.getElementById("vInsuranceCity");
 
 /**
  * @description This function makes that cities are added when the department is selected.
  * @returns {void}
  */
-departmentSelect.addEventListener('change', () => {
+departmentSelect.addEventListener("change", () => {
   const selectedDepartment = departmentSelect.value;
   const cities = departments[selectedDepartment];
-  citySelect.innerHTML = '';
+  citySelect.innerHTML = "";
   if (cities.length > 0) {
     citySelect.innerHTML = cities
-      .map(city => `<option>${city}</option>`)
-      .join('');
+      .map((city) => `<option>${city}</option>`)
+      .join("");
     citySelect.value = cities[0];
   }
 });
 
 /**
- * @description This function calculates the insurance quote. 
+ * @description This function calculates the insurance quote.
+ * @returns {number} The final price. It is the sum of the base price and the factors.
+ */
+/**
+ * @description This function calculates the insurance quote.
  * @returns {number} The final price. It is the sum of the base price and the factors.
  */
 const calculateQuote = () => {
@@ -116,8 +121,23 @@ const calculateQuote = () => {
   let yearFactor =
     factors.year[user.vehicle.year <= 2018 ? "1950-2018" : "2019+"];
   let modelFactor = factors.model[user.vehicle.model] || 0.1;
-  return basePrice * (ageFactor + brandFactor + yearFactor + modelFactor);
+  const finalPrice =
+    basePrice * (ageFactor + brandFactor + yearFactor + modelFactor);
+  const now = new Date(); // get the current date and time
+  let quote = {
+    name: user.name,
+    price: finalPrice,
+    date: now.toLocaleString(), // format the date and time as a string
+  };
+  const updatedUser = {
+    ...user,
+    insurances: user.insurances.concat([quote])
+  };
+  // Almacenar el objeto actualizado en localStorage.
+  localStorage.setItem("userStorageV", JSON.stringify(updatedUser));
+  return finalPrice;
 };
+
 
 const submitButton = document.querySelector("#submitButtonV"); // Get the specific submit button element using its id
 const vInsuranceForm = document.querySelector("#vInsurance"); // Get the form elements using its id
@@ -171,7 +191,11 @@ submitButton.addEventListener("click", (e) => {
     !vInsuranceForm.elements.model.value ||
     !vInsuranceForm.elements.year.value
   ) {
-    alert("Por favor, complete todos los campos del formulario.");
+    Swal.fire({
+      title: "Error",
+      text: "Por favor, complete todos los campos del formulario.",
+      icon: "error",
+    });
     return;
   }
   // Retrieve the user object from local storage
@@ -205,29 +229,52 @@ submitButton.addEventListener("click", (e) => {
         model: user.vehicle.model,
         year: user.vehicle.year,
       },
+      insurances:[],
     })
   );
+  // Show loading animation for 2 seconds
+  Swal.fire({
+    title: "Cotizando",
+    html: "Estamos procesando tu cotización...",
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  }).then(() => {
+    // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
+    if (!quoteResult) {
+      let finalPrice = Math.round(calculateQuote());
+      quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares, al año.`;
+    }
 
-  // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
-  if (!quoteResult) {
-    let finalPrice = Math.round(calculateQuote());
-    quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPrice} dólares, al año.`;
-  }
-
-  modalBody.innerHTML = quoteResult;
-  modal.classList.add("show");
-  modal.setAttribute("aria-modal", "true");
-  modal.style.display = "block";
-  document.body.classList.add("modal-open");
+    // Show SweetAlert with the quote result
+    Swal.fire({
+      icon: "success",
+      title: "Cotización generada",
+      html: `<p>${quoteResult}</p>`,
+    });
+});
 });
 
-const btnClose = document.querySelector(".btn-close");
-btnClose.addEventListener("click", function () {
-  modal.classList.remove("show");
-  modal.removeAttribute("aria-modal");
-  modal.style.display = "none";
-  document.body.classList.remove("modal-open");
+function showSweetAlert(message) {
+  Swal.fire({
+    title: 'Insurances',
+    text: message,
+    icon: 'success',
+    confirmButtonText: 'Ok'
+  });
+}
+
+const button = document.getElementById('show-insurances');
+
+button.addEventListener('click', function() {
+  const message = insurances;
+  showSweetAlert(message);
 });
+
 
 /*
 In this script I use the following concepts:
