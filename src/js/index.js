@@ -74,16 +74,20 @@ searchBtn.addEventListener('click', () => {
 
 //############ INDEX.HTML SCRIPT ############
 
-//Currency exchange
+//currency converter using exchangerate-api.com to fetch the real time
 const currencies = {
-  AUD: "Australian Dollar",
-  CAD: "Canadian Dollar",
-  EUR: "Euro",
-  GBP: "British Pound",
-  INR: "Indian Rupee",
-  JPN: "Japanese Yen",
   USD: "United States Dollar",
-  ZAR: "South African Rand",
+  EUR: "Euro",
+  UYU: "Uruguayan Peso",
+  ARS: "Argentine Peso",
+  BRL: "Brazilian Real",
+  PYG: "Paraguayan Guarani",
+  VES: "Venezuelan Bolivar",
+  CLP: "Chilean Peso",
+  COP: "Colombian Peso",
+  MXN: "Mexican Peso",
+  PEN: "Peruvian Sol",
+  BOB: "Bolivian Boliviano",
 };
 
 const primaryCurrency = document.getElementById("primary");
@@ -108,7 +112,7 @@ function fetchCurrencies() {
   const secondary = secondaryCurrency.value;
   const amount = document.getElementById("amount").value;
   fetch(
-    "https://v6.exchangerate-api.com/v6/d14eeee6a4f935aab34c335e/latest/" +
+    "https://v6.exchangerate-api.com/v6/d45639a1f701c29a33550c6d/latest/" +
       primary
   )
     .then((response) => {
