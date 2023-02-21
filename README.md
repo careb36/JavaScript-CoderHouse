@@ -1,4 +1,8 @@
-![Unsplash|80](https://images.unsplash.com/photo-1543966888-7c1dc482a810?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1206&q=80)
+<p>
+  <a href="https://262.ecma-international.org/13.0/">
+    <img alt="JavaScript" src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*4psuHMMvI6mbH-g1brkXfg.png" width="800">
+  </a>
+</p>
 
 ---
 
