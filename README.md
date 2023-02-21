@@ -120,15 +120,29 @@ Los temas incluidos para continuar con el simulador son:
 
 - HTML.
 - JavaScript.
+- SweetAlert2.
 - Bootstrap.
 - Webstorm.
 - Google Chrome.
+- Exchangerate API
 
 ![HTML](https://img.icons8.com/color/96/000000/html-5.png)
 ![JavaScript](https://img.icons8.com/color/96/000000/javascript.png)
 ![Bootstrap](https://img.icons8.com/color/96/000000/bootstrap.png)
 ![Webstorm](https://img.icons8.com/color/96/000000/webstorm.png)
 ![Google Chrome](https://img.icons8.com/color/96/000000/chrome.png)
+
+<p>
+  <a href="http://sweetalert.js.org">
+    <img alt="SweetAlert" src="https://raw.githubusercontent.com/t4t5/sweetalert/e3c2085473a0eb5a6b022e43eb22e746380bb955/assets/logotype.png" width="300">
+  </a>
+</p>
+
+<p>
+  <a href="[http://sweetalert.js.org](https://www.exchangerate-api.com/)">
+    <img alt="ExchangeRate-API" src="https://www.exchangerate-api.com/img/hr-logo-2022-ldpi-rc.png" width="300">
+  </a>
+</p>
 
 ## Autor
 
