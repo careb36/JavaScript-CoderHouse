@@ -1,4 +1,20 @@
+<<<<<<< HEAD
 # Curso de JavaScript de CODERHOUSE
+=======
+<p>
+  <a href="https://262.ecma-international.org/13.0/">
+    <img alt="JavaScript" src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*4psuHMMvI6mbH-g1brkXfg.png" width="500">
+  </a>
+  <a href="https://www.coderhouse.com">
+    <img alt="CoderHouse" src="https://scontent.fmvd4-1.fna.fbcdn.net/v/t39.30808-6/259450704_5263897886958320_6900787951833542274_n.png?_nc_cat=1&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=c1Luoa9B2uMAX83rbKC&_nc_ht=scontent.fmvd4-1.fna&oh=00_AfBXkfhauMapiMa5LX3cDCaeXjkmeIqgFar9v8wiIM8WUw&oe=63F86BEF" width="300">
+  </a>
+</p>
+
+---
+
+Curso de JavaScript
+===================
+>>>>>>> 8fc84a69a47af603e90ff63c32d0cfd0b3250671
 
 > Fundamentos del lenguaje de programación JavaScript.
 
@@ -123,6 +139,7 @@ Los temas incluidos para continuar con el simulador son:
 
 ![HTML](https://img.icons8.com/color/96/000000/html-5.png)
 ![JavaScript](https://img.icons8.com/color/96/000000/javascript.png)
+<<<<<<< HEAD
 ![SweetAlert2](https://sweetalert2.github.io/images/SweetAlert2.png)
 ![Bootstrap](https://img.icons8.com/color/96/000000/bootstrap.png)
 ![Webstorm](https://img.icons8.com/color/96/000000/webstorm.png)
@@ -135,3 +152,27 @@ Este proyecto fue creado por Carolina R. Pereira, puede encontrar más informaci
 
 - 🌐 [LinkedIn](https://www.linkedin.com/in/carolinarpereira/)
 - 🌐 [Medium](https://medium.com/@carolina.r.pereira)
+=======
+![Bootstrap](https://img.icons8.com/color/96/000000/bootstrap.png)
+![Webstorm](https://img.icons8.com/color/96/000000/webstorm.png)
+![Google Chrome](https://img.icons8.com/color/96/000000/chrome.png)
+
+<p>
+  <a href="http://sweetalert.js.org">
+    <img alt="SweetAlert" src="https://raw.githubusercontent.com/t4t5/sweetalert/e3c2085473a0eb5a6b022e43eb22e746380bb955/assets/logotype.png" width="300">
+  </a>
+</p>
+
+<p>
+  <a href="https://www.exchangerate-api.com/">
+    <img alt="ExchangeRate-API" src="https://www.exchangerate-api.com/img/hr-logo-2022-ldpi-rc.png" width="300">
+  </a>
+</p>
+
+## Autor
+
+Este proyecto fue creado por Carolina R. Pereira, puede encontrar más información en su perfil de:
+
+- 🌐 [LinkedIn](https://www.linkedin.com/in/carolinarpereira/)
+- 🌐 [Medium](https://medium.com/@carolina.r.pereira)
+>>>>>>> 8fc84a69a47af603e90ff63c32d0cfd0b3250671
