@@ -6,151 +6,133 @@ Curso de JavaScript de CODERHOUSE
 =================================
 
 > Fundamentos del lenguaje de programación JavaScript.
-> <br>
 
-## ****Programa****
+## 🚀 Programa
 
-💻 **Introducción a JavaScript + Onboarding**
+### Introducción a JavaScript + Onboarding
+*December 13, 2022*
 
-December 13, 2022  
+### 1. Conceptos generales: Sintaxis y variables
+*December 15, 2022*
 
-💻 **1. Conceptos generales: Sintaxis y variables**
+### 2. Control de flujos
+*December 20, 2022*
 
-December 15, 2022  
+### 3. Ciclos e iteraciones
+*December 22, 2022*
 
-💻 **2. Control de flujos**
+### AfterClass - Vemos GitHub
+*December 26, 2022*
 
-December 20, 2022  
+### 4. Funciones
+*January 3, 2023*
 
-💻 **3. Ciclos e iteraciones**
+### 5. Objetos
+*January 5, 2023*
 
-December 22, 2022  
+### AfterClass - Objetos y funciones
+*January 9, 2023*
 
-💻 [**AfterClass] Vemos GitHub**
+### 6. Arrays
+*January 10, 2023*
 
-December 26, 2022  
+### 7. Funciones de orden superior
+*January 12, 2023*
 
-💻 **4. Funciones**
+### 8. DOM
+*January 17, 2023*
 
-January 3, 2023
+### 9. Eventos
+*January 19, 2023*
 
-💻 **5. Objetos**
+### 10. Storage & JSON
+*January 24, 2023*
 
-January 5, 2023  
+### 11. Workshop
+*January 26, 2023*
 
-💻 **[AfterClass] Objetos y funciones**
+### 12. Operadores avanzados
+*January 31, 2023*
 
-January 9, 2023  
+### 13. Librerías
+*February 2, 2023*
 
-💻 **6. Arrays**
+### 14. Asincronía y promesas
+*February 7, 2023*
 
-January 10, 2023
+### 15. Ajax & Fetch
+*February 9, 2023*
 
-💻 **7. Funciones de orden superior**
+### 16. Frameworks & NodeJS
+*February 14, 2023*
 
-January 12, 2023  
+# 📦 Entregas del Proyecto Final
 
-💻 **8. DOM**
+## Primera entrega - 10-01-23
 
-January 17, 2023  
+En esta entrega se presenta un video que muestra un sitio web creado según los requerimientos de la primera pre-entrega del proyecto final del curso de JavaScript de CoderHouse. El video muestra un simulador interactivo que cubre los temas dictados en las primeras cuatro clases del curso:
 
-💻 **9. Eventos**
+- Conceptos generales: sintaxis y variables.
+- Control de flujos.
+- Ciclos e iteraciones.
+- Funciones.
 
-January 19, 2023  
+👉 [Ver video en YouTube sobre la pre-entrega](https://youtu.be/7t9aAhskFQg)
 
-💻 **10. Storage & JSON**
-
-January 24, 2023  
-
-💻 **11. Workshop**
-
-January 26, 2023  
-
-💻 **12. Operadores avanzados**
-
-January 31, 2023  
-
-💻 **13. Librerías**
-
-February 2, 2023  
-
-💻 **14. Asincronía y promesas**
-
-February 7, 2023  
-
-💻 **15. Ajax & Fetch**
-
-February 9, 2023  
-
-🚀 **16. Frameworks & NodeJS**
-
-February 14, 2023
-
-
-___
-### **Primera entrega del Proyecto Final 10-01-23**
-
-
-![icons8|80](https://img.icons8.com/nolan/2x/chevron-right.png)[![Video en YouTube sobre la preentrega](https://cdn-icons-png.flaticon.com/128/3670/3670147.png)](https://youtu.be/7t9aAhskFQg)
-
-#### **Este video enseña un sitio web creado según los requerimientos de la primera pre entrega del proyecto final del curso de JavaScript de CoderHouse.**
-
-**Los temas incluidos para hacer un simulador interactivo son los dictados en las 4 primeras clases del curso:**
-
-1. Conceptos generales: Sintaxis y variables.
-2. Control de flujos.
-3. Ciclos e iteraciones.
-- [AfterClass] GitHub.
-4. Funciones.
-
-
-___
-### **Segunda entrega del Proyecto Final 24-01-23**
+## Segunda entrega - 24-01-23
 
 En esta etapa se solicita la entrega de la estructura del proyecto, las variables necesarias y los objetos de JS.
 
-#### **Objetivos generales:**
+### Objetivos generales:
 
-* Codificar la funcionalidad inicial del simulador.
-* Identificar el flujo de trabajo del script en términos de captura de entradas ingresadas por el usuario, procesamiento esencial del simulador y notificación de resultados en forma de salida.
+- Codificar la funcionalidad inicial del simulador.
+- Identificar el flujo de trabajo del script en términos de captura de entradas ingresadas por el usuario, procesamiento esencial del simulador y notificación de resultados en forma de salida.
 
-**Los temas incluidos para continuar con el simulador son:**
+Los temas incluidos para continuar con el simulador son:
 
-1. Objetos
-- [AfterClass] Objetos y funciones**
-2. Arrays
-3. Funciones de orden superior**
-___
-### **Tercera entrega del Proyecto Final 07-02-23**
+- Objetos.
+- Arrays.
+- Funciones de orden superior.
 
-En esta etapa se solicita agregar y entregar uso de JSON y Storage, y DOM y eventos del usuario.
+## Tercera entrega - 07-02-23
 
-#### **Objetivos generales:**
+En esta etapa se solicita agregar y entregar el uso de JSON y Storage, y DOM y eventos del usuario.
 
-* Codificar funciones de procesos esenciales y notificación de resultados por HTML, añadiendo interacción al simulador.
-* Ampliar y refinar el flujo de trabajo del script en términos de captura de eventos, procesamiento del simulador y notificación de resultados en forma de salidas por HTML, modificando el DOM.
+### Objetivos generales:
 
-#### **Objetivos específicos:**
+- Codificar funciones de procesos esenciales y notificación de resultados por HTML, añadiendo interacción al simulador.
+- Ampliar y refinar el flujo de trabajo del script en términos de captura de eventos, procesamiento del simulador y notificación de resultados en forma de salidas por HTML, modificando el DOM.
 
-* Definir eventos a manejar y su función de respuesta.
-* Modificar el DOM, ya sea para definir elementos al cargar la página o para realizar salidas de un procesamiento.
-* Almacenar datos (clave-valor) en el Storage y recuperarlos
+### Objetivos específicos
 
-**Los temas incluidos para continuar con el simulador son:**
+- Definir eventos a manejar y su función de respuesta.
+- Modificar el DOM, ya sea para definir elementos al cargar la página o para realizar salidas de un procesamiento.
+- Almacenar datos (clave-valor) en el Storage y recuperarlos.
 
-1. DOM
-2. Eventos
-- [AfterClass] Funciones de Orden Superior + DOM
-3. Storage & JSON
-___
+Los temas incluidos para continuar con el simulador son:
 
-**Tecnologías / herramientas utilizadas HTML, JavaScript, Bootstrap, Webstorm y Chrome:**
+- DOM.
+- Eventos.
+- [AfterClass] Funciones de Orden Superior + DOM.
+- Storage & JSON.
 
-![icons8|80](https://img.icons8.com/color/2x/html-5.png)![icons8|80](https://img.icons8.com/color/2x/javascript.png)![icons8|80](https://img.icons8.com/color/2x/bootstrap.png)![icons8|80](https://img.icons8.com/color/2x/webstorm.png)![icons8|80](https://img.icons8.com/color/2x/chrome--v3.png)
+## Tecnologías / herramientas utilizadas
 
+- HTML.
+- JavaScript.
+- Bootstrap.
+- Webstorm.
+- Google Chrome.
 
-______________________________________________
+![HTML](https://img.icons8.com/color/96/000000/html-5.png)
+![JavaScript](https://img.icons8.com/color/96/000000/javascript.png)
+![Bootstrap](https://img.icons8.com/color/96/000000/bootstrap.png)
+![Webstorm](https://img.icons8.com/color/96/000000/webstorm.png)
+![Google Chrome](https://img.icons8.com/color/96/000000/chrome.png)
 
-🌐 [Linkedin](https://www.linkedin.com/in/carolinarpereira/) 
+## Autor
 
-🌐 [Medium](https://medium.com/@carolina.r.pereira)
+Este proyecto fue creado por Carolina R. Pereira, puede encontrar más información en su perfil de:
+
+- 🌐 [LinkedIn](https://www.linkedin.com/in/carolinarpereira/)
+- 🌐 [Medium](https://medium.com/@carolina.r.pereira)
