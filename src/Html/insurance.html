@@ -5,6 +5,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mattress Bank</title>
+    <script src="../js/index.js" defer></script>
     <!--Bootstrap-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -17,7 +18,7 @@
   <header>
     <!-- Navigation bar -->
   <nav class="navbar navbar-expand-md navbar-light">
-    <div class="container-sm">
+    <div class="container-md">
       <a class="navbar-brand" href="index.html">
         <img src="../pictures/icon.png" width="50" alt="Logo de la pagina web" />
       </a>
@@ -43,12 +44,12 @@
           </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-danger" type="submit">Search</button>
+          <input id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button id="search-button" class="btn btn-danger" type="button">Search</button>
         </form>
       </div>
     </div>
-  </nav>
+  </nav>  
   </header>
   <body>
     <!-- main content-->
@@ -76,8 +77,8 @@
             </li>
           </ul>
         </div>
-        <div class="card-body">
-          <!-- cards -->
+         <!-- cards -->
+        <div class="card-body">         
           <div class="row align-items-center">
             <div class="col-sm-4 justify-content-center py-1 my-1">
               <div
@@ -186,17 +187,17 @@ crossorigin="anonymous"
                 <h5>Emergencias</h5>
             </div>
             <div class="col-xxl-6 py-2 my-2">
-                <form>
-                    <h5 class="text-start">Suscribite a nuestro newsletter</h5>
-                    <p class="text-start">Entérate mensualmente de nuestras noticias y accede a beneficios
-                        exclusivos.</p>
-                    <div class="d-flex w-100 gap-2">
-                        <label for="newsletter1" class="visually-hidden">Dirección de correo electrónico</label>
-                        <input id="newsletter1" type="text" class="form-control" placeholder="Dirección de correo"
-                            spellcheck="false" data-ms-editor="true">
-                        <button class="btn btn-danger" type="button">Suscribirse</button>
-                    </div>
-                </form>
+              <form>
+                <h5 class="text-start">Suscribite a nuestro newsletter</h5>
+                <p class="text-start">Entérate mensualmente de nuestras noticias y accede a beneficios
+                  exclusivos.</p>
+                <div class="d-flex w-100 gap-2">
+                  <label for="newsletter1" class="visually-hidden">Dirección de correo electrónico</label>
+                  <input id="newsletter1" type="text" class="form-control" placeholder="Dirección de correo"
+                    spellcheck="false" data-ms-editor="true">
+                  <button class="btn btn-danger" id="susBtn" type="button">Suscribirse</button>
+                </div>
+              </form>
             </div>
         </div>
     </div>

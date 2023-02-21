@@ -1,0 +1,68 @@
+{
+    "user": {
+      "name": "",
+      "surname": "",
+      "age": 0,
+      "tel": "",
+      "email": "",
+      "address": "",
+      "department": "",
+      "city": "",
+      "vehicle": { "brand": "", "model": "", "year": 0 },
+      "insurancesM": [],
+      "insuranceV": [],
+      "insuranceS": []
+    },
+    "factors": {
+      "age": {
+        "18-21": 120,
+        "22+": 80
+      },
+      "brand": {
+        "HarleyDavidson": 0.9,
+        "Ducati": 0.9,
+        "Ecosse": 0.8,
+        "Dodge": 0.8,
+        "Suzuki": 0.8,
+        "Kawasaki": 0.7,
+        "Yamaha": 0.7,
+        "Honda": 0.6,
+        "Triumph": 0.6,
+        "KTM": 0.6,
+        "Vespa": 0.6,
+        "Bajaj": 0.5,
+        "Otra": 0.4
+      },
+      "year": {
+        "1950-2018": 0.8,
+        "2019+": 0.9
+      },
+      "model": {
+        "Standar": 0.2,
+        "Cruiser": 0.25,
+        "Sports": 0.3,
+        "Otro": 0.1
+      }
+    },
+    "departments": {
+      "Artigas": ["Artigas"],
+      "Canelones": ["Canelones"],
+      "CerroLargo": ["Melo"],
+      "Colonia": ["Colonia"],
+      "Durazno": ["Durazno"],
+      "Flores": ["Trinidad"],
+      "Florida": ["Florida"],
+      "Lavalleja": ["Minas"],
+      "Maldonado": ["Maldonado"],
+      "Montevideo": ["Montevideo"],
+      "Paysandú": ["Paysandú"],
+      "RíoNegro": ["FrayBentos"],
+      "Rivera": ["Rivera"],
+      "Rocha": ["Rocha"],
+      "Salto": ["Salto"],
+      "SanJosé": ["SanJosé"],
+      "Soriano": ["Mercedes"],
+      "Tacuarembó": ["Tacuarembó"],
+      "TreintayTres": ["TreintayTres"]
+    }
+  }

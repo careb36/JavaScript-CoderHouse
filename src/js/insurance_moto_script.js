@@ -1,8 +1,8 @@
 /* 
 This script is for an insurance quote calculator for motorcycles. 
 It has an object "user" to store the user's data, including their motorcycle information. 
-The factors used to calculate the insurance quote are also stored in an object "factors". 
-The "calculateQuote" function uses the information in the user object and factors object 
+The factorsM used to calculate the insurance quote are also stored in an object "factorsM". 
+The "calculateQuoteM" function uses the information in the user object and factorsM object 
 to determine the final insurance quote. The code also uses local storage to store the user's information, 
 so that if they revisit the page, their information will still be there. 
 The code also uses DOM manipulation to display the quote result in a modal.
@@ -28,9 +28,9 @@ let user = {
   quotes:[], // I use an array to store the quotes.
 };
 
-// I use objects to store the factors : age, brand, year, model. 
-// This factors are used to calculate the final price of the insurance.
-const factors = {
+// I use objects to store the factorsM : age, brand, year, model. 
+// This factorsM are used to calculate the final price of the insurance.
+const factorsM = {
   age: {
     "18-21": 120,
     "22+": 80,
@@ -85,52 +85,53 @@ const departments = {
   TreintayTres: ['TreintayTres'],
 };
 
-const departmentSelect = document.getElementById('mInsuranceDepartment');
-const citySelect = document.getElementById('mInsuranceCity');
+const departmentSelectM = document.getElementById('mInsuranceDepartment');
+const citySelectM = document.getElementById('mInsuranceCity');
 
 /**
  * @description This function makes that cities are added when the department is selected.
  * @returns {void}
  */
-departmentSelect.addEventListener('change', () => {
-  const selectedDepartment = departmentSelect.value;
+departmentSelectM.addEventListener('change', () => {
+  const selectedDepartment = departmentSelectM.value;
   const cities = departments[selectedDepartment];
-  citySelect.innerHTML = '';
+  citySelectM
+.innerHTML = '';
   if (cities.length > 0) {
-    citySelect.innerHTML = cities
+    citySelectM
+  .innerHTML = cities
       .map(city => `<option>${city}</option>`)
       .join('');
-    citySelect.value = cities[0];
+    citySelectM
+  .value = cities[0];
   }
 });
 
 /**
  * @description This function calculates the insurance quote. 
- * @returns {number} The final price. It is the sum of the base price and the factors.
+ * @returns {number} The final price. It is the sum of the base price and the factorsM.
  */
-const calculateQuote = () => {
-  const basePrice = 50; // base price for all motorcycles
+const calculateQuoteM = () => {
+  const basePriceM = 50; // base price for all motorcycles
   user.age = parseInt(user.age, 10); //using parseInt with a radix of 10 to ensure these values are correctly parsed as integers
   user.motorcycle.year = parseInt(user.motorcycle.year, 10); //using parseInt with a radix of 10 to ensure these values are correctly parsed as integers
-  let ageFactor = factors.age[user.age < 22 ? "18-21" : "22+"];
-  let brandFactor = factors.brand[user.motorcycle.brand] || 0.4;
-  let yearFactor =
-    factors.year[user.motorcycle.year <= 2018 ? "1950-2018" : "2019+"];
-  let modelFactor = factors.model[user.motorcycle.model] || 0.1;
-  return basePrice + ageFactor + brandFactor + yearFactor + modelFactor;
+  let ageFactor = factorsM.age[user.age < 22 ? "18-21" : "22+"];
+  let brandFactorM = factorsM.brand[user.motorcycle.brand] || 0.4;
+  let yearFactorM =
+    factorsM.year[user.motorcycle.year <= 2018 ? "1950-2018" : "2019+"];
+  let modelFactorM = factorsM.model[user.motorcycle.model] || 0.1;
+  return basePriceM + ageFactor + brandFactorM + yearFactorM + modelFactorM;
 };
 
-const submitButton = document.querySelector("#submitButtonM"); // Get the specific submit button element using its id
+const submitButtonM = document.querySelector("#submitButtonM"); // Get the specific submit button element using its id
 const mInsuranceForm = document.querySelector("#mInsurance"); // Get the form elements using its id
-let selDepartment = document.querySelector("#mInsuranceDepartment");
-let selCity = document.querySelector("#mInsuranceCity");
-let selBrand = document.querySelector("#mInsuranceBrand"); // Get the select element using its id
-let selModel = document.querySelector("#mInsuranceModel"); // Get the select element using its id
-const modal = document.querySelector(".modal"); // Get the modal element using its class
-const modalBody = document.querySelector(".modal-body"); // Get the modal body element using its class
+let selDepartmentM = document.querySelector("#mInsuranceDepartment");
+let selCityM = document.querySelector("#mInsuranceCity");
+let selBrandM = document.querySelector("#mInsuranceBrand"); // Get the select element using its id
+let selModelM = document.querySelector("#mInsuranceModel"); // Get the select element using its id
 
 // Store the quote result as a variable instead of recalculating it every time.
-let quoteResult;
+let quoteResultM;
 
 // in the variable storedUserM stores the items from user object in local storage and convert it to JSON string using JSON.stringify method.
 let storedUserM = JSON.parse(localStorage.getItem("userStorageM"));
@@ -144,11 +145,11 @@ if (storedUserM) {
   mInsuranceForm.elements.tel.value = storedUserM.tel;
   mInsuranceForm.elements.email.value = storedUserM.email;
   mInsuranceForm.elements.address.value = storedUserM.address;
-  selDepartment.value = storedUserM.department;
-  selCity.value = storedUserM.city;
+  selDepartmentM.value = storedUserM.department;
+  selCityM.value = storedUserM.city;
   mInsuranceForm.elements.zip.value = storedUserM.zip;
-  selBrand.value = storedUserM.motorcycle.brand;
-  selModel.value = storedUserM.motorcycle.model;
+  selBrandM.value = storedUserM.motorcycle.brand;
+  selModelM.value = storedUserM.motorcycle.model;
   mInsuranceForm.elements.year.value = storedUserM.motorcycle.year;
 }
 
@@ -156,7 +157,7 @@ if (storedUserM) {
  * @description check if form mandatory fields are filled, if so, calculate the quote and show the modal and store the user object in local storage.
  * @param {object} user The user object.
  */
-submitButton.addEventListener("click", (e) => {
+submitButtonM.addEventListener("click", (e) => {
   e.preventDefault();
 
   // Check if all form fields are filled
@@ -187,12 +188,12 @@ submitButton.addEventListener("click", (e) => {
   user.age = mInsuranceForm.elements.age.value;
   user.tel = mInsuranceForm.elements.tel.value;
   user.address = mInsuranceForm.elements.address.value;
-  user.department = selDepartment.options[selDepartment.selectedIndex].text;
-  user.city = selCity.options[selCity.selectedIndex].text;
+  user.department = selDepartmentM.options[selDepartmentM.selectedIndex].text;
+  user.city = selCityM.options[selCityM.selectedIndex].text;
   user.zip = mInsuranceForm.elements.zip.value;
   user.motorcycle.year = mInsuranceForm.elements.year.value;
-  user.motorcycle.brand = selBrand.options[selBrand.selectedIndex].text;
-  user.motorcycle.model = selModel.options[selModel.selectedIndex].text;
+  user.motorcycle.brand = selBrandM.options[selBrandM.selectedIndex].text;
+  user.motorcycle.model = selModelM.options[selModelM.selectedIndex].text;
 
   // Store the user object in local storage
   localStorage.setItem(
@@ -212,6 +213,7 @@ submitButton.addEventListener("click", (e) => {
         model: user.motorcycle.model,
         year: user.motorcycle.year,
       },
+      
     })
   );
   // Show loading animation for 2 seconds
@@ -226,34 +228,91 @@ submitButton.addEventListener("click", (e) => {
       Swal.showLoading();
     },
   }).then(() => {
-    // the function call to calculateQuote only once, instead of being recalculated every time the modal is shown
-    if (!quoteResult) {
-      let finalPrice = Math.round(calculateQuote());
-      quoteResult = `${user.name} ${user.surname} el precio final para el seguro de su ${user.motorcycle.brand} ${user.motorcycle.model} del año ${user.motorcycle.year} es de ${finalPrice} dólares, al año.`;
+    // the function call to calculateQuoteM only once, instead of being recalculated every time the modal is shown
+    if (!quoteResultM) {
+      let finalPrice = Math.round(calculateQuoteM());
+      quoteResultM = `${user.name} ${user.surname} el precio final para el seguro de su ${user.motorcycle.brand} ${user.motorcycle.model} del año ${user.motorcycle.year} es de ${finalPrice} dólares, al año.`;
     }
 
     // Show SweetAlert with the quote result
     Swal.fire({
       icon: "success",
       title: "Cotización generada",
-      html: `<p>${quoteResult}</p>`,
+      html: `<p>${quoteResultM}</p>`,
     });
   });
 });
 
-/*
-In this script I use the following concepts:
-- Objects
-- Arrays
-- Functions
-- DOM manipulation
-- Local storage
-- Event listeners
-- Form validation
-- Conditional statements
-- Loops
-- Math
-- JSON
-- Arrow functions
-- other concepts
-*/
+//############ COMMON SCRIPT FOR ALL PAGES ############
+
+//subscribe button
+const subscribeBtn = document.querySelector('#susBtn');
+subscribeBtn.addEventListener('click', () => {
+  const email = document.querySelector('#newsletter1').value;
+
+  // Check if the mail field is empty or not a valid mail with regular expressions (regex)
+  if (!email || !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Correo inválido',
+      text: 'Por favor ingresa una dirección de correo electrónico válida.',
+    });
+    return;
+  }
+
+  Swal.fire({
+    title: 'Enviando solicitud...',
+    allowOutsideClick: false,
+    onBeforeOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  // Simulate a request to the server
+  setTimeout(() => {
+    Swal.fire({
+      icon: 'success',
+      title: '¡Gracias por suscribirte!',
+      text: 'Recibirás un correo electrónico a la brevedad.',
+    });
+  }, 1000);
+});
+
+//search button
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-button');
+
+searchBtn.addEventListener('click', () => {
+  // Get the value of the lookup field
+  const searchTerm = searchInput.value;
+
+  // Validate that a search term has been entered
+  if (searchTerm.trim() === '') {
+    Swal.fire({
+      icon: 'error',
+      title: '¡Oops!',
+      text: 'Por favor ingrese un término de búsqueda',
+    });
+    return;
+  }
+
+  // Show SweetAlert of search in progress
+  Swal.fire({
+    title: 'Buscando...',
+    allowOutsideClick: false,
+    onBeforeOpen: () => {
+      Swal.showLoading();
+    },
+  });
+
+  // Simulate a search on the server (for this example setTimeout is used to simulate a delay in the search)
+  setTimeout(() => {
+    console.log(`Realizando búsqueda con el término: ${searchTerm}`);
+    // Show SweetAlert of search completed
+    Swal.fire({
+      icon: 'error',
+      title: 'No hay Resultados',
+      text: 'Estamos con problemas técnicos, intente su búsqueda en unos minutos.',
+    });
+  }, 1000);
+});

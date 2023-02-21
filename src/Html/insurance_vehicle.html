@@ -16,7 +16,7 @@
 <header>
     <!-- Navigation bar -->
   <nav class="navbar navbar-expand-md navbar-light">
-    <div class="container-sm">
+    <div class="container-md">
       <a class="navbar-brand" href="index.html">
         <img src="../pictures/icon.png" width="50" alt="Logo de la pagina web" />
       </a>
@@ -42,12 +42,12 @@
           </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-danger" type="submit">Search</button>
+          <input id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button id="search-button" class="btn btn-danger" type="button">Search</button>
         </form>
       </div>
     </div>
-  </nav>
+  </nav>  
 </header>
 <body>
     <!-- main content-->
@@ -245,6 +245,7 @@ crossorigin="anonymous"
 ></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <!-- footer -->
 <div class="row py-xxl-3 my-xxl-3">
 </div>
@@ -267,14 +268,14 @@ crossorigin="anonymous"
                 <form>
                     <h5 class="text-start">Suscribite a nuestro newsletter</h5>
                     <p class="text-start">Entérate mensualmente de nuestras noticias y accede a beneficios
-                        exclusivos.</p>
+                      exclusivos.</p>
                     <div class="d-flex w-100 gap-2">
-                        <label for="newsletter1" class="visually-hidden">Dirección de correo electrónico</label>
-                        <input id="newsletter1" type="text" class="form-control" placeholder="Dirección de correo"
-                            spellcheck="false" data-ms-editor="true">
-                        <button class="btn btn-danger" type="button">Suscribirse</button>
+                      <label for="newsletter1" class="visually-hidden">Dirección de correo electrónico</label>
+                      <input id="newsletter1" type="text" class="form-control" placeholder="Dirección de correo"
+                        spellcheck="false" data-ms-editor="true">
+                      <button class="btn btn-danger" id="susBtn" type="button">Suscribirse</button>
                     </div>
-                </form>
+                  </form>
             </div>
         </div>
     </div>
