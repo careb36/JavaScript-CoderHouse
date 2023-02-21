@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Curso de JavaScript de CODERHOUSE
 =======
 <p>
@@ -14,7 +13,6 @@
 
 Curso de JavaScript
 ===================
->>>>>>> 8fc84a69a47af603e90ff63c32d0cfd0b3250671
 
 > Fundamentos del lenguaje de programación JavaScript.
 
@@ -139,20 +137,6 @@ Los temas incluidos para continuar con el simulador son:
 
 ![HTML](https://img.icons8.com/color/96/000000/html-5.png)
 ![JavaScript](https://img.icons8.com/color/96/000000/javascript.png)
-<<<<<<< HEAD
-![SweetAlert2](https://sweetalert2.github.io/images/SweetAlert2.png)
-![Bootstrap](https://img.icons8.com/color/96/000000/bootstrap.png)
-![Webstorm](https://img.icons8.com/color/96/000000/webstorm.png)
-![Google Chrome](https://img.icons8.com/color/96/000000/chrome.png)
-![Exchangerate API](https://www.exchangerate-api.com/img/hr-logo-2022-ldpi-rc.png)
-
-## Autor
-
-Este proyecto fue creado por Carolina R. Pereira, puede encontrar más información en su perfil de:
-
-- 🌐 [LinkedIn](https://www.linkedin.com/in/carolinarpereira/)
-- 🌐 [Medium](https://medium.com/@carolina.r.pereira)
-=======
 ![Bootstrap](https://img.icons8.com/color/96/000000/bootstrap.png)
 ![Webstorm](https://img.icons8.com/color/96/000000/webstorm.png)
 ![Google Chrome](https://img.icons8.com/color/96/000000/chrome.png)
@@ -171,8 +155,8 @@ Este proyecto fue creado por Carolina R. Pereira, puede encontrar más informaci
 
 ## Autor
 
-Este proyecto fue creado por Carolina R. Pereira, puede encontrar más información en su perfil de:
+Este proyecto fue creado por Carolina R. Pereira, puede encontrar más información en mis perfiles de:
 
 - 🌐 [LinkedIn](https://www.linkedin.com/in/carolinarpereira/)
 - 🌐 [Medium](https://medium.com/@carolina.r.pereira)
->>>>>>> 8fc84a69a47af603e90ff63c32d0cfd0b3250671
+
