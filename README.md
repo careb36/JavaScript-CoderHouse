@@ -139,7 +139,7 @@ Los temas incluidos para continuar con el simulador son:
 </p>
 
 <p>
-  <a href="[http://sweetalert.js.org](https://www.exchangerate-api.com/)">
+  <a href="https://www.exchangerate-api.com/">
     <img alt="ExchangeRate-API" src="https://www.exchangerate-api.com/img/hr-logo-2022-ldpi-rc.png" width="300">
   </a>
 </p>
