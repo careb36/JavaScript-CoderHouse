@@ -1,8 +1,13 @@
-let uniqueId = 'id-' + Math.random().toString(36).substr(2, 9);
+
+function randomToken() {
+  return Math.random()
+    .toString(36)
+    .substr(2);
+}
 
 // I use an object to store the user data. The user object includes the vehicle.
 let user = {
-  id: uniqueId,
+  id: randomToken(),
   name: "",
   surname: "",
   age: 0,
@@ -12,7 +17,7 @@ let user = {
   department: "",
   city: "",
   zip: "",
-  vehicle: { brand: "", model: "", year: 0 },
+  vehicle: [{ brand: "", model: "", year: 0 }],
   insurancesV: []
 };
 
@@ -112,11 +117,12 @@ const calculateQuoteV = () => {
   } else {
     let quote = {
       name: user.name,
-      price: finalPriceV,
-      date: now.toLocaleString(),
+      surname: user.surname,
       brand: user.vehicle.brand,
       model: user.vehicle.model,
       year: user.vehicle.year,
+      price: finalPriceV,
+      date: now.toLocaleString(),
     };
     user.insurancesV.push(quote);
     localStorage.setItem("userStorageV", JSON.stringify(user));
@@ -186,7 +192,7 @@ submitButtonV.addEventListener("click", (e) => {
     return;
   }
   // Retrieve the user object from local storage
-  user.id = uniqueId;
+  user.id = randomToken();
   user.name = vInsuranceForm.elements.name.value;
   user.surname = vInsuranceForm.elements.surname.value;
   user.age = vInsuranceForm.elements.age.value;
@@ -200,7 +206,7 @@ submitButtonV.addEventListener("click", (e) => {
   user.vehicle.model = selModelV.options[selModelV.selectedIndex].text;
 
   let newUser = {
-    id: uniqueId,
+    id: randomToken(),
     name: vInsuranceForm.elements.name.value,
     surname: vInsuranceForm.elements.surname.value,
     age: vInsuranceForm.elements.age.value,
@@ -210,11 +216,11 @@ submitButtonV.addEventListener("click", (e) => {
     department: selDepartmentV.value,
     city: selCityV.value,
     zip: vInsuranceForm.elements.zip.value,
-    vehicle: {
+    vehicle: [{
       brand: selBrandV.value,
       model: selModelV.value,
       year: vInsuranceForm.elements.year.value
-    },
+    }],
     insurancesV: []
   };
   // calculate the quote and add it to the new user object
@@ -245,11 +251,11 @@ submitButtonV.addEventListener("click", (e) => {
       department: user.department,
       city: user.city,
       zip: user.zip,
-      vehicle: {
+      vehicle: [{
         brand: user.vehicle.brand,
         model: user.vehicle.model,
         year: user.vehicle.year,
-      },
+      }],
       insurancesV: [],
     })
   );
@@ -304,7 +310,7 @@ showInsurancesButton.addEventListener("click", () => {
   // create a list of quote strings
   const quoteStrings = quotes.map(
     (quote) =>
-      `Usuario: ${quote.name} ${user.surname}. Vehiculo: ${user.vehicle.brand} - ${user.vehicle.model} - ${user.vehicle.year}. Cotización: U$S ${quote.price}. Fecha: ${quote.date}`
+      `Usuario: ${quote.name} ${quote.surname}. Vehiculo: ${quote.brand} - ${quote.model} - ${quote.year}. Cotización: U$S ${quote.price}. Fecha: ${quote.date}`
   );
   // update the result element with the quote strings and show it
   resultElement.innerHTML = `
