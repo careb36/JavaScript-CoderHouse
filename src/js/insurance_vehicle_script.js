@@ -1,5 +1,8 @@
+let uniqueId = 'id-' + Math.random().toString(36).substr(2, 9);
+
 // I use an object to store the user data. The user object includes the vehicle.
 let user = {
+  id: uniqueId,
   name: "",
   surname: "",
   age: 0,
@@ -8,9 +11,12 @@ let user = {
   address: "",
   department: "",
   city: "",
+  zip: "",
   vehicle: { brand: "", model: "", year: 0 },
-  insurancesV: [],
+  insurancesV: []
 };
+
+let users = [];
 
 // I use objects to store the factorsV : age, brand, year, model.
 // This factorsV are used to calculate the final price of the insurance.
@@ -73,6 +79,19 @@ departmentSelectV.addEventListener("change", () => {
   citySelectV.value = citySelectV.children[0].value;
 });
 
+const findExistingQuoteV = () => {
+  for (const quote of user.insurancesV) {
+    if (
+      quote.brand === user.vehicle.brand &&
+      quote.model === user.vehicle.model &&
+      quote.year === user.vehicle.year
+    ) {
+      return quote.price;
+    }
+  }
+  return null;
+};
+
 /**
  * @description This function calculates the insurance quote.
  * @returns {number} The final price. It is the sum of the base price and the factorsV.
@@ -85,18 +104,25 @@ const calculateQuoteV = () => {
   let yearFactor =
     factorsV.year[user.vehicle.year <= 2018 ? "1950-2018" : "2019+"];
   let modelFactor = factorsV.model[user.vehicle.model] || 0.1;
-  const finalPriceV = 5 * (ageFactor + brandFactor + yearFactor + modelFactor);
+  const finalPriceV = 5 * (ageFactor + brandFactor + yearFactor + modelFactor).toFixed(2);
   const now = new Date();
-  let quote = {
-    name: user.name,
-    price: finalPriceV,
-    date: now.toLocaleString(),
-  };
-  localStorage.setItem(
-    "userStorageV",
-    JSON.stringify({ ...user, insurancesV: user.insurancesV.push([quote]) })
-  );
-  return finalPriceV;
+  let existingQuote = findExistingQuoteV();
+  if (existingQuote !== null) {
+    quoteResultV = existingQuote;
+  } else {
+    let quote = {
+      name: user.name,
+      price: finalPriceV,
+      date: now.toLocaleString(),
+      brand: user.vehicle.brand,
+      model: user.vehicle.model,
+      year: user.vehicle.year,
+    };
+    user.insurancesV.push(quote);
+    localStorage.setItem("userStorageV", JSON.stringify(user));
+    quoteResultV = finalPriceV;
+  }
+  return quoteResultV;
 };
 
 const submitButtonV = document.querySelector("#submitButtonV"); // Get the specific submit button element using its id
@@ -115,6 +141,7 @@ let storedUserV = JSON.parse(localStorage.getItem("userStorageV"));
 // If the user object is not found in local storage, create a new one and store it in local storage
 // Otherwise, use the stored user object
 if (storedUserV) {
+  user.id = storedUserV.id;
   vInsuranceForm.elements.name.value = storedUserV.name;
   vInsuranceForm.elements.surname.value = storedUserV.surname;
   vInsuranceForm.elements.age.value = storedUserV.age;
@@ -127,7 +154,7 @@ if (storedUserV) {
   selBrandV.value = storedUserV.vehicle.brand;
   selModelV.value = storedUserV.vehicle.model;
   vInsuranceForm.elements.year.value = storedUserV.vehicle.year;
-}else {
+} else {
   localStorage.setItem("userStorageV", JSON.stringify(user));
 }
 
@@ -159,6 +186,7 @@ submitButtonV.addEventListener("click", (e) => {
     return;
   }
   // Retrieve the user object from local storage
+  user.id = uniqueId;
   user.name = vInsuranceForm.elements.name.value;
   user.surname = vInsuranceForm.elements.surname.value;
   user.age = vInsuranceForm.elements.age.value;
@@ -171,10 +199,43 @@ submitButtonV.addEventListener("click", (e) => {
   user.vehicle.brand = selBrandV.options[selBrandV.selectedIndex].text;
   user.vehicle.model = selModelV.options[selModelV.selectedIndex].text;
 
+  let newUser = {
+    id: uniqueId,
+    name: vInsuranceForm.elements.name.value,
+    surname: vInsuranceForm.elements.surname.value,
+    age: vInsuranceForm.elements.age.value,
+    tel: vInsuranceForm.elements.tel.value,
+    email: vInsuranceForm.elements.email.value,
+    address: vInsuranceForm.elements.address.value,
+    department: selDepartmentV.value,
+    city: selCityV.value,
+    zip: vInsuranceForm.elements.zip.value,
+    vehicle: {
+      brand: selBrandV.value,
+      model: selModelV.value,
+      year: vInsuranceForm.elements.year.value
+    },
+    insurancesV: []
+  };
+  // calculate the quote and add it to the new user object
+  let quote = {
+    price: calculateQuoteV(),
+    date: new Date().toLocaleString()
+  };  
+
+  newUser.insurancesV.push(quote);
+  // add the new user object to the users array
+  users.push(newUser);
+  // store the users array in local storage
+  localStorage.setItem("users", JSON.stringify(users));
+  // reset the form
+  vInsuranceForm.reset();
+
   // Store the user object in local storage
   localStorage.setItem(
     "userStorageV",
     JSON.stringify({
+      id: user.id,
       name: user.name,
       surname: user.surname,
       age: user.age,
@@ -189,106 +250,143 @@ submitButtonV.addEventListener("click", (e) => {
         model: user.vehicle.model,
         year: user.vehicle.year,
       },
-      insurancesM: [],
-  insurancesV: [],
-  insurancesS: []
+      insurancesV: [],
     })
   );
 
-// Function to show the loading animation and calculate the quote
-function showLoadingAndCalculateQuote() {
-  return new Promise((resolve, reject) => {
-    // Show loading animation for 2 seconds
-    Swal.fire({
-      title: "Cotizando",
-      html: "Estamos procesando tu cotización...",
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-      },
-    }).then(() => {
-      // Calculate the quote only once, instead of being recalculated every time the modal is shown
-      if (!quoteResultV) {
-        let finalPriceV = Math.round(calculateQuoteV());
-        quoteResultV = `${user.name} ${user.surname} el precio final para el seguro de su ${user.vehicle.brand} ${user.vehicle.model} del año ${user.vehicle.year} es de ${finalPriceV} dólares, al año.`;
-      }
-      // Show SweetAlert with the quote result
+  // Function to show the loading animation and calculate the quote
+  function showLoadingAndCalculateQuote() {
+    return new Promise((resolve, reject) => {
+      // Show loading animation for 2 seconds
       Swal.fire({
-        icon: "success",
-        title: "Cotización generada",
-        html: `<p>${quoteResultV}</p>`,
+        title: "Cotizando",
+        html: "Estamos procesando tu cotización...",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+        },
       }).then(() => {
-        // Resolve the promise when the SweetAlert is closed
-        resolve();
+        // Calculate the quote only once, instead of being recalculated every time the modal is shown
+        if (!quoteResultV) {
+          let finalPriceV = Math.round(calculateQuoteV());
+          quoteResultV = `El precio de tu seguro es de U$S${finalPriceV} anuales.`;
+        }
+        // Show SweetAlert with the quote result
+        Swal.fire({
+          icon: "success",
+          title: "Cotización generada",
+          html: `<p>La cotizacion de su seguro tiene un valor anual de U$S ${quoteResultV}</p>`,
+        }).then(() => {
+          // Resolve the promise when the SweetAlert is closed
+          resolve();
+        });
       });
     });
+  }
+
+  // Call the function without reloading the page when it is resolved
+  showLoadingAndCalculateQuote().then(() => {
+    console.log("Cotización generada exitosamente");
   });
-}
-// Call the function and reload the page when it is resolved
-showLoadingAndCalculateQuote().then(() => {
-    location.reload();
+
+// get the button and result elements
+const showInsurancesButton = document.getElementById("show-insurances");
+const resultElement = document.getElementById("result");
+
+// add an event listener to the button element
+showInsurancesButton.addEventListener("click", () => {
+  // get the quotes from the user object
+  const quotes = user.insurancesV;
+
+  // create a list of quote strings
+  const quoteStrings = quotes.map(
+    (quote) =>
+      `Usuario: ${quote.name} ${user.surname}. Vehiculo: ${user.vehicle.brand} - ${user.vehicle.model} - ${user.vehicle.year}. Cotización: U$S ${quote.price}. Fecha: ${quote.date}`
+  );
+  // update the result element with the quote strings and show it
+  resultElement.innerHTML = `
+    <div class="list-group">
+    <ul>
+      ${quoteStrings
+        .map(
+          (quoteString) => `<div class="list-group-item">${quoteString}</div>`
+        )
+        .join("")}
+    </ul>
+    </div>
+    <button id="delete-insurances" class="btn btn-danger mt-2">Ocultar cotizaciones</button>
+  `;
+  resultElement.style.display = "block";
+
+  // add an event listener to the delete button
+  const deleteInsurancesButton = document.getElementById("delete-insurances");
+  deleteInsurancesButton.addEventListener("click", () => {
+    // clear the result element
+    resultElement.innerHTML = "";
+    // show a success message using SweetAlert
+  });
 });
 });
 
 //############ COMMON SCRIPT FOR ALL PAGES ############
 
 //subscribe button
-const subscribeBtn = document.querySelector('#susBtn');
-subscribeBtn.addEventListener('click', () => {
-  const email = document.querySelector('#newsletter1').value;
+const subscribeBtn = document.querySelector("#susBtn");
+subscribeBtn.addEventListener("click", () => {
+  const email = document.querySelector("#newsletter1").value;
 
   // Check if the mail field is empty or not a valid mail with regular expressions (regex)
   if (!email || !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
     Swal.fire({
-      icon: 'error',
-      title: 'Correo inválido',
-      text: 'Por favor ingresa una dirección de correo electrónico válida.',
+      icon: "error",
+      title: "Correo inválido",
+      text: "Por favor ingresa una dirección de correo electrónico válida.",
     });
     return;
   }
 
   Swal.fire({
-    title: 'Enviando solicitud...',
+    title: "Enviando solicitud...",
     allowOutsideClick: false,
     onBeforeOpen: () => {
       Swal.showLoading();
-    }
+    },
   });
 
   // Simulate a request to the server
   setTimeout(() => {
     Swal.fire({
-      icon: 'success',
-      title: '¡Gracias por suscribirte!',
-      text: 'Recibirás un correo electrónico a la brevedad.',
+      icon: "success",
+      title: "¡Gracias por suscribirte!",
+      text: "Recibirás un correo electrónico a la brevedad.",
     });
   }, 1000);
 });
 
 //search button
-const searchInput = document.getElementById('search-input');
-const searchBtn = document.getElementById('search-button');
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-button");
 
-searchBtn.addEventListener('click', () => {
+searchBtn.addEventListener("click", () => {
   // Get the value of the lookup field
   const searchTerm = searchInput.value;
 
   // Validate that a search term has been entered
-  if (searchTerm.trim() === '') {
+  if (searchTerm.trim() === "") {
     Swal.fire({
-      icon: 'error',
-      title: '¡Oops!',
-      text: 'Por favor ingrese un término de búsqueda',
+      icon: "error",
+      title: "¡Oops!",
+      text: "Por favor ingrese un término de búsqueda",
     });
     return;
   }
 
   // Show SweetAlert of search in progress
   Swal.fire({
-    title: 'Buscando...',
+    title: "Buscando...",
     allowOutsideClick: false,
     onBeforeOpen: () => {
       Swal.showLoading();
@@ -300,9 +398,9 @@ searchBtn.addEventListener('click', () => {
     console.log(`Realizando búsqueda con el término: ${searchTerm}`);
     // Show SweetAlert of search completed
     Swal.fire({
-      icon: 'error',
-      title: 'No hay Resultados',
-      text: 'Estamos con problemas técnicos, intente su búsqueda en unos minutos.',
+      icon: "error",
+      title: "No hay Resultados",
+      text: "Estamos con problemas técnicos, intente su búsqueda en unos minutos.",
     });
   }, 1000);
 });

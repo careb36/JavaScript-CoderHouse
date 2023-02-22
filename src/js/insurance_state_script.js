@@ -1,13 +1,3 @@
-/* 
-This script is for an insurance quote calculator for states. 
-It has an object "user" to store the user's data, including their state information. 
-The factorsS used to calculate the insurance quote are also stored in an object "factorsS". 
-The "calculateQuoteS" function uses the information in the user object and factorsS object 
-to determine the final insurance quote. The code also uses local storage to store the user's information, 
-so that if they revisit the page, their information will still be there. 
-The code also uses DOM manipulation to display the quote result in a modal.
-*/
-
 // I use an object to store the user data. The user object includes the state.
 let user = {
   name: "",

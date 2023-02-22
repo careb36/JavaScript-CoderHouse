@@ -1,14 +1,3 @@
-/* 
-This script is for an insurance quote calculator for motorcycles. 
-It has an object "user" to store the user's data, including their motorcycle information. 
-The factorsM used to calculate the insurance quote are also stored in an object "factorsM". 
-The "calculateQuoteM" function uses the information in the user object and factorsM object 
-to determine the final insurance quote. The code also uses local storage to store the user's information, 
-so that if they revisit the page, their information will still be there. 
-The code also uses DOM manipulation to display the quote result in a modal.
-*/
-
-
 // I use an object to store the user data. The user object includes the motorcycle.
 let user = {
   name: "",
