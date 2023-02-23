@@ -1,8 +1,15 @@
-
+/**
+ * @description random token for user object
+ * @returns 
+ */
 function randomToken() {
-  return Math.random()
+  let token = Math.random()
     .toString(36)
     .substr(2);
+  while (token.startsWith('0')) {
+    token = token.substr(1);
+  }
+  return parseInt(token, 36);
 }
 
 // I use an object to store the user data. The user object includes the vehicle.
@@ -84,6 +91,10 @@ departmentSelectV.addEventListener("change", () => {
   citySelectV.value = citySelectV.children[0].value;
 });
 
+/**
+ * @description 
+ * @returns 
+ */
 const findExistingQuoteV = () => {
   for (const quote of user.insurancesV) {
     if (
@@ -97,10 +108,7 @@ const findExistingQuoteV = () => {
   return null;
 };
 
-/**
- * @description This function calculates the insurance quote.
- * @returns {number} The final price. It is the sum of the base price and the factorsV.
- */
+
 const calculateQuoteV = () => {
   user.age = parseInt(user.age, 10);
   user.vehicle.year = parseInt(user.vehicle.year, 10);
@@ -310,7 +318,7 @@ showInsurancesButton.addEventListener("click", () => {
   // create a list of quote strings
   const quoteStrings = quotes.map(
     (quote) =>
-      `Usuario: ${quote.name} ${quote.surname}. Vehiculo: ${quote.brand} - ${quote.model} - ${quote.year}. Cotización: U$S ${quote.price}. Fecha: ${quote.date}`
+      `Usuario: ${quote.name} ${quote.surname}. Vehiculo: ${quote.brand} - ${quote.model} - ${quote.year}. Cotización: U$S ${quote.price} (anual). Fecha: ${quote.date}`
   );
   // update the result element with the quote strings and show it
   resultElement.innerHTML = `
@@ -335,78 +343,4 @@ showInsurancesButton.addEventListener("click", () => {
     // show a success message using SweetAlert
   });
 });
-});
-
-//############ COMMON SCRIPT FOR ALL PAGES ############
-
-//subscribe button
-const subscribeBtn = document.querySelector("#susBtn");
-subscribeBtn.addEventListener("click", () => {
-  const email = document.querySelector("#newsletter1").value;
-
-  // Check if the mail field is empty or not a valid mail with regular expressions (regex)
-  if (!email || !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-    Swal.fire({
-      icon: "error",
-      title: "Correo inválido",
-      text: "Por favor ingresa una dirección de correo electrónico válida.",
-    });
-    return;
-  }
-
-  Swal.fire({
-    title: "Enviando solicitud...",
-    allowOutsideClick: false,
-    onBeforeOpen: () => {
-      Swal.showLoading();
-    },
-  });
-
-  // Simulate a request to the server
-  setTimeout(() => {
-    Swal.fire({
-      icon: "success",
-      title: "¡Gracias por suscribirte!",
-      text: "Recibirás un correo electrónico a la brevedad.",
-    });
-  }, 1000);
-});
-
-//search button
-const searchInput = document.getElementById("search-input");
-const searchBtn = document.getElementById("search-button");
-
-searchBtn.addEventListener("click", () => {
-  // Get the value of the lookup field
-  const searchTerm = searchInput.value;
-
-  // Validate that a search term has been entered
-  if (searchTerm.trim() === "") {
-    Swal.fire({
-      icon: "error",
-      title: "¡Oops!",
-      text: "Por favor ingrese un término de búsqueda",
-    });
-    return;
-  }
-
-  // Show SweetAlert of search in progress
-  Swal.fire({
-    title: "Buscando...",
-    allowOutsideClick: false,
-    onBeforeOpen: () => {
-      Swal.showLoading();
-    },
-  });
-
-  // Simulate a search on the server (for this example setTimeout is used to simulate a delay in the search)
-  setTimeout(() => {
-    console.log(`Realizando búsqueda con el término: ${searchTerm}`);
-    // Show SweetAlert of search completed
-    Swal.fire({
-      icon: "error",
-      title: "No hay Resultados",
-      text: "Estamos con problemas técnicos, intente su búsqueda en unos minutos.",
-    });
-  }, 1000);
 });

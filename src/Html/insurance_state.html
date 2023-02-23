@@ -7,16 +7,18 @@
     <title>Mattress Bank</title>
      <!-- This defer attribute is set to indicate to a browser that the script is meant to be executed after the document has been parsed, but before firing-->
      <script src="../js/insurance_state_script.js" defer></script>
+     <script src="../js/index.js" defer></script>
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
 </head>
 <header>
     <!-- Navigation bar -->
   <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-md">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="../html/index.html">
         <img src="../pictures/icon.png" width="50" alt="Logo de la pagina web" />
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -32,16 +34,16 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <a class="dropdown-item" href="insurance.html">Seguros</a>
+                <a class="dropdown-item" href="../html/insurance.html">Seguros</a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../Html/about_us.html">Acerca de nosotros</a>
+            <a class="nav-link active" aria-current="page" href="../html/about_us.html">Acerca de nosotros</a>
           </li>
         </ul>
         <form class="d-flex">
-          <input id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />
           <button id="search-button" class="btn btn-danger" type="button">Search</button>
         </form>
       </div>
@@ -63,13 +65,13 @@
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="true" href="insurance_vehicle.html">Vehículos</a>
+                        <a class="nav-link" aria-current="true" href="../html/insurance_vehicle.html">Vehículos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="insurance_moto.html">Motocicletas</a>
+                        <a class="nav-link" href="../html/insurance_moto.html">Motocicletas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="insurance_state.html">Inmuebles</a>
+                        <a class="nav-link active" href="../html/insurance_state.html">Inmuebles</a>
                     </li>
                 </ul>
             </div>
@@ -185,25 +187,94 @@
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-outline-primary" id="submitButtonS">Cotizar</button>
                             </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" id="show-insurances"
+                                    class="btn btn-outline-danger">Mostrar cotizaciones</button>
+                            </div>
+                            <div>
+                                <p id="result"></p>
+                            </div>
                         </form>
                     </div>
                     <div class="col-md-2">
                     </div>
                 </div>
-                    <!-- cards -->
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="card" style="width:fit-content; height: auto; background-color: rgb(0, 89, 179);">
-                                <img src="../pictures/galeria-inmuebles.jpeg" class="card-img-top" alt="Imagen de vehiculos estacionados">
-                                <div class="card-body">
-                                    <h4 class="card-title text-white py-1 my-2">Seguros de inmuebles</h4>
-                                    <p class="text-white">Conocé las coberturas de Seguros de inmuebles del Mattress
-                                        Bank y encontrá la que mejor se adapte a tus necesidades.</p>
+                    <!-- Offcanvas -->
+                <div class="row-cols-auto mt-md-3">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h6 class="fs-4 text-primary"><i class="bi bi-currency-exchange"></i> Utilice nuestros
+                                servicios de conversión de Divisas</h6>
+                            <button class="btn btn-primary mt-md-2" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                                Acceder
+                            </button>
+                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                                aria-labelledby="offcanvasExampleLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Conversor de Divisas</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <div>
+                                        <p>Nuestro servicio de conversión de divisas es una herramienta que te permitirá
+                                            obtener al instante el valor de una moneda en relación a otra.</p>
+                                        <p>Te mostrará el valor exacto en tiempo real, esto es especialmente útil para
+                                            personas como tú que necesitan hacer negocios, o utilizar los servicios de
+                                            Mattress Bank.</p>
+                                    </div>
+                                    <div>
+                                        <!-- Currency converter -->
+                                        <div class="col-md-auto d-flex justify-content-center">
+                                            <div class="card">
+                                                <img src="https://media.giphy.com/media/cJFQJzZxFMhONxDTnt/giphy.gif"
+                                                    class="card-img-top" alt="pantalla de pc con graficos financieros">
+                                                <div class="card-body">
+                                                    <h4 class="card-title text-center">Conversión de Divisas</h5>
+                                                        <form>
+                                                            <div class="col-auto">
+                                                                <label for="amount"
+                                                                    class="form-label text-muted">Monto</label>
+                                                                <input type="number"
+                                                                    class="form-control form-control-md" id="amount"
+                                                                    value="1">
+                                                            </div>
+                                                            <div class="col-md-auto">
+                                                                <label for="primary"
+                                                                    class="form-label text-muted">Moneda
+                                                                    Primaria</label>
+                                                                <select id="primary" class="form-select input">
+                                                                    <!-- Opciones de monedas generadas con JavaScript -->
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-auto">
+                                                                <label for="secondary"
+                                                                    class="form-label text-muted">Moneda
+                                                                    Secundaria</label>
+                                                                <select id="secondary" class="form-select input">
+                                                                    <!-- Opciones de monedas generadas con JavaScript -->
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-auto mt-md-3">
+                                                                <button type="button" class="btn btn-danger btn-md"
+                                                                    id="btn-convert">Convertir</button>
+                                                            </div>
+                                                        </form>
+                                                        <p id="result" class="mt-3" style="display:none;">
+                                                            <span id="txt-primary" class="fw-bold"></span>
+                                                            <span id="txt-secondary" class="fw-bold"></span>
+                                                        </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
+            </div>
             </div>
         <!-- bootstrap script -->
     <script

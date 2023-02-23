@@ -1,5 +1,16 @@
-// I use an object to store the user data. The user object includes the motorcycle.
+function randomToken() {
+  let token = Math.random()
+    .toString(36)
+    .substr(2);
+  while (token.startsWith('0')) {
+    token = token.substr(1);
+  }
+  return parseInt(token, 36);
+}
+
+// I use an object to store the user data. The user object includes the vehicle.
 let user = {
+  id: randomToken(),
   name: "",
   surname: "",
   age: 0,
@@ -14,8 +25,10 @@ let user = {
     model: "",
     year: 0,
   },
-  quotes:[], // I use an array to store the quotes.
+  insurancesM: [],
 };
+
+let users = [];
 
 // I use objects to store the factorsM : age, brand, year, model. 
 // This factorsM are used to calculate the final price of the insurance.
@@ -81,36 +94,60 @@ const citySelectM = document.getElementById('mInsuranceCity');
  * @description This function makes that cities are added when the department is selected.
  * @returns {void}
  */
-departmentSelectM.addEventListener('change', () => {
-  const selectedDepartment = departmentSelectM.value;
-  const cities = departments[selectedDepartment];
-  citySelectM
-.innerHTML = '';
-  if (cities.length > 0) {
-    citySelectM
-  .innerHTML = cities
-      .map(city => `<option>${city}</option>`)
-      .join('');
-    citySelectM
-  .value = cities[0];
-  }
+departmentSelectM.addEventListener("change", () => {
+  citySelectM.innerHTML = departments[departmentSelectM.value]
+    .map((city) => `<option>${city}</option>`)
+    .join("");
+  citySelectM.value = citySelectM.children[0].value;
 });
 
 /**
- * @description This function calculates the insurance quote. 
- * @returns {number} The final price. It is the sum of the base price and the factorsM.
+ * @description 
+ * @returns 
  */
+const findExistingQuoteM = () => {
+  for (const quote of user.insurancesM) {
+    if (
+      quote.brand === user.motorcycle.brand &&
+      quote.model === user.motorcycle.model &&
+      quote.year === user.motorcycle.year
+    ) {
+      return quote.price;
+    }
+  }
+  return null;
+};
+
 const calculateQuoteM = () => {
-  const basePriceM = 50; // base price for all motorcycles
   user.age = parseInt(user.age, 10); //using parseInt with a radix of 10 to ensure these values are correctly parsed as integers
   user.motorcycle.year = parseInt(user.motorcycle.year, 10); //using parseInt with a radix of 10 to ensure these values are correctly parsed as integers
   let ageFactor = factorsM.age[user.age < 22 ? "18-21" : "22+"];
-  let brandFactorM = factorsM.brand[user.motorcycle.brand] || 0.4;
-  let yearFactorM =
+  let brandFactor = factorsM.brand[user.motorcycle.brand] || 0.4;
+  let yearFactor =
     factorsM.year[user.motorcycle.year <= 2018 ? "1950-2018" : "2019+"];
-  let modelFactorM = factorsM.model[user.motorcycle.model] || 0.1;
-  return basePriceM + ageFactor + brandFactorM + yearFactorM + modelFactorM;
+  let modelFactor = factorsM.model[user.motorcycle.model] || 0.1;
+  const finalPriceM = 5 * (ageFactor + brandFactor + yearFactor + modelFactor).toFixed(2);
+  const now = new Date();
+  let existingQuote = findExistingQuoteM();
+  if (existingQuote !== null) {
+    quoteResultM = existingQuote;
+  } else {
+    let quote = {
+      name: user.name,
+      surname: user.surname,
+      brand: user.motorcycle.brand,
+      model: user.motorcycle.model,
+      year: user.motorcycle.year,
+      price: finalPriceM,
+      date: now.toLocaleString(),
+    };
+    user.insurancesM.push(quote);
+    localStorage.setItem("userStorageM", JSON.stringify(user));
+    quoteResultM = finalPriceM;
+  }
+  return quoteResultM;
 };
+
 
 const submitButtonM = document.querySelector("#submitButtonM"); // Get the specific submit button element using its id
 const mInsuranceForm = document.querySelector("#mInsurance"); // Get the form elements using its id
@@ -140,6 +177,8 @@ if (storedUserM) {
   selBrandM.value = storedUserM.motorcycle.brand;
   selModelM.value = storedUserM.motorcycle.model;
   mInsuranceForm.elements.year.value = storedUserM.motorcycle.year;
+}else {
+  localStorage.setItem("userStorageM", JSON.stringify(user));
 }
 
 /**
@@ -184,124 +223,135 @@ submitButtonM.addEventListener("click", (e) => {
   user.motorcycle.brand = selBrandM.options[selBrandM.selectedIndex].text;
   user.motorcycle.model = selModelM.options[selModelM.selectedIndex].text;
 
+  let newUser = {
+    id: randomToken(),
+  name: "",
+  surname: "",
+  age: 0,
+  tel: "",
+  email: "",
+  address: "",
+  department: "",
+  city: "",
+  zip: "",
+  motorcycle: {
+    brand: "",
+    model: "",
+    year: 0,
+  },
+  insurancesM: [],
+  };
+  // calculate the quote and add it to the new user object
+  let quote = {
+    price: calculateQuoteM(),
+    date: new Date().toLocaleString()
+  };  
+
+  newUser.insurancesM.push(quote);
+  // add the new user object to the users array
+  users.push(newUser);
+  // store the users array in local storage
+  localStorage.setItem("users", JSON.stringify(users));
+  // reset the form
+  mInsuranceForm.reset();
+
+
   // Store the user object in local storage
   localStorage.setItem(
     "userStorageM",
     JSON.stringify({
-      name: user.name,
-      surname: user.surname,
-      age: user.age,
-      tel: user.tel,
-      email: user.email,
-      address: user.address,
-      department: user.department,
-      city: user.city,
-      zip: user.zip,
-      motorcycle: {
-        brand: user.motorcycle.brand,
-        model: user.motorcycle.model,
-        year: user.motorcycle.year,
-      },
-      
+      id: randomToken(),
+  name: "",
+  surname: "",
+  age: 0,
+  tel: "",
+  email: "",
+  address: "",
+  department: "",
+  city: "",
+  zip: "",
+  motorcycle: {
+    brand: "",
+    model: "",
+    year: 0,
+  },
+  insurancesM: [],      
     })
   );
-  // Show loading animation for 2 seconds
-  Swal.fire({
-    title: "Cotizando",
-    html: "Estamos procesando tu cotización...",
-    allowOutsideClick: false,
-    allowEscapeKey: false,
-    timer: 2000,
-    timerProgressBar: true,
-    didOpen: () => {
-      Swal.showLoading();
-    },
-  }).then(() => {
-    // the function call to calculateQuoteM only once, instead of being recalculated every time the modal is shown
-    if (!quoteResultM) {
-      let finalPrice = Math.round(calculateQuoteM());
-      quoteResultM = `${user.name} ${user.surname} el precio final para el seguro de su ${user.motorcycle.brand} ${user.motorcycle.model} del año ${user.motorcycle.year} es de ${finalPrice} dólares, al año.`;
-    }
 
-    // Show SweetAlert with the quote result
+// Function to show the loading animation and calculate the quote
+function showLoadingAndCalculateQuote() {
+  return new Promise((resolve, reject) => {
+    // Show loading animation for 2 seconds
     Swal.fire({
-      icon: "success",
-      title: "Cotización generada",
-      html: `<p>${quoteResultM}</p>`,
+      title: "Cotizando",
+      html: "Estamos procesando tu cotización...",
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    }).then(() => {
+      // Calculate the quote only once, instead of being recalculated every time the modal is shown
+      if (!quoteResultM) {
+        let finalPriceM = Math.round(calculateQuoteV());
+        quoteResultM = `El precio de tu seguro es de U$S${finalPriceM} anuales.`;
+      }
+      // Show SweetAlert with the quote result
+      Swal.fire({
+        icon: "success",
+        title: "Cotización generada",
+        html: `<p>La cotizacion de su seguro tiene un valor anual de U$S ${quoteResultM}</p>`,
+      }).then(() => {
+        // Resolve the promise when the SweetAlert is closed
+        resolve();
+      });
     });
   });
+}
+
+// Call the function without reloading the page when it is resolved
+showLoadingAndCalculateQuote().then(() => {
+  console.log("Cotización generada exitosamente");
 });
 
-//############ COMMON SCRIPT FOR ALL PAGES ############
+// get the button and result elements
+const showInsurancesButton = document.getElementById("show-insurances");
+const resultElement = document.getElementById("result");
 
-//subscribe button
-const subscribeBtn = document.querySelector('#susBtn');
-subscribeBtn.addEventListener('click', () => {
-  const email = document.querySelector('#newsletter1').value;
+// add an event listener to the button element
+showInsurancesButton.addEventListener("click", () => {
+// get the quotes from the user object
+const quotes = user.insurancesM;
 
-  // Check if the mail field is empty or not a valid mail with regular expressions (regex)
-  if (!email || !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Correo inválido',
-      text: 'Por favor ingresa una dirección de correo electrónico válida.',
-    });
-    return;
-  }
+// create a list of quote strings
+const quoteStrings = quotes.map(
+  (quote) =>
+    `Usuario: ${quote.name} ${quote.surname}. Motocicleta: ${quote.brand} - ${quote.model} - ${quote.year}. Cotización: U$S ${quote.price} (anual). Fecha: ${quote.date}`
+);
+// update the result element with the quote strings and show it
+resultElement.innerHTML = `
+  <div class="list-group">
+  <ul>
+    ${quoteStrings
+      .map(
+        (quoteString) => `<div class="list-group-item">${quoteString}</div>`
+      )
+      .join("")}
+  </ul>
+  </div>
+  <button id="delete-insurances" class="btn btn-danger mt-2">Ocultar cotizaciones</button>
+`;
+resultElement.style.display = "block";
 
-  Swal.fire({
-    title: 'Enviando solicitud...',
-    allowOutsideClick: false,
-    onBeforeOpen: () => {
-      Swal.showLoading();
-    }
-  });
-
-  // Simulate a request to the server
-  setTimeout(() => {
-    Swal.fire({
-      icon: 'success',
-      title: '¡Gracias por suscribirte!',
-      text: 'Recibirás un correo electrónico a la brevedad.',
-    });
-  }, 1000);
+// add an event listener to the delete button
+const deleteInsurancesButton = document.getElementById("delete-insurances");
+deleteInsurancesButton.addEventListener("click", () => {
+  // clear the result element
+  resultElement.innerHTML = "";
+  // show a success message using SweetAlert
 });
-
-//search button
-const searchInput = document.getElementById('search-input');
-const searchBtn = document.getElementById('search-button');
-
-searchBtn.addEventListener('click', () => {
-  // Get the value of the lookup field
-  const searchTerm = searchInput.value;
-
-  // Validate that a search term has been entered
-  if (searchTerm.trim() === '') {
-    Swal.fire({
-      icon: 'error',
-      title: '¡Oops!',
-      text: 'Por favor ingrese un término de búsqueda',
-    });
-    return;
-  }
-
-  // Show SweetAlert of search in progress
-  Swal.fire({
-    title: 'Buscando...',
-    allowOutsideClick: false,
-    onBeforeOpen: () => {
-      Swal.showLoading();
-    },
-  });
-
-  // Simulate a search on the server (for this example setTimeout is used to simulate a delay in the search)
-  setTimeout(() => {
-    console.log(`Realizando búsqueda con el término: ${searchTerm}`);
-    // Show SweetAlert of search completed
-    Swal.fire({
-      icon: 'error',
-      title: 'No hay Resultados',
-      text: 'Estamos con problemas técnicos, intente su búsqueda en unos minutos.',
-    });
-  }, 1000);
+});
 });

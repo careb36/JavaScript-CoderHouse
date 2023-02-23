@@ -138,5 +138,4 @@ function displayCurrency(data, primary, secondary, amount) {
     calculated + " " + secondary;
 }
 
-//############ INSURANCE.HTML SCRIPT ############
 
