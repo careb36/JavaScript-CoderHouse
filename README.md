@@ -158,7 +158,7 @@ En esta etapa se solicita entregar el proyecto para su corrección final. Una p�
 Es un sitio web de un banco. Para realizar el simulador requerido utilizo los temas vistos durante el curso para implementar un simulador de cotización de seguros de vehículos, motocicletas e inmuebles. El localstorage se utiliza para aprendizaje, como buena práctica no se deberían almacenar datos personales de los usuarios. Implemento también el consumo de una Exchangerate API para realizar un simulador de cotización de monedas en tiempo real.
 Utilizo Bootstrapt 5 para que el sitio sea responsivo y para darle un estilo de forma rápida y SweetAlert2 porque mejora considerablemente la estética de las alertas.
 
-👉 [Ver video en YouTube sobre la entrega final](https://www.youtube.com/embed/5O9rLbifi_I)
+👉 [Ver video en YouTube sobre la entrega final](https://www.youtube.com/watch?v=5O9rLbifi_I)
 
 ## Tecnologías / herramientas utilizadas
 
