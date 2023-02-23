@@ -125,7 +125,7 @@ Los temas incluidos para continuar con el simulador son:
 - [AfterClass] Funciones de Orden Superior + DOM.
 - Storage & JSON.
 
-## Cuarta entrega (final) - 25-02-23
+## Cuarta entrega (final) - 24-02-23
 
 En esta etapa se solicita entregar el proyecto para su corrección final. Una página web interactiva en JavaScript, esta debe simular distintos procesos. Un “simulador” es un programa que soluciona ciertas tareas, y proporciona al usuario información de valor, de forma coherente y prolija. Utilizarás AJAX y JSON para obtener datos y diversas herramientas de JS como librerías, promises y asincronía para controlar eventos en la interfaz y producir animaciones en respuesta.
 
