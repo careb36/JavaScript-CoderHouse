@@ -1,12 +1,24 @@
+/*
+This code contains functions and objects to calculate insurance quotes for vehicles in Uruguay. 
+The randomToken function generates a unique identifier for each user object. 
+The user object contains information about the user, their vehicle, and any existing insurance quotes. 
+The factorsV object stores values for different factors used to calculate the final price of the insurance. 
+The departments object stores the departments and cities in Uruguay. 
+The departmentSelectV and citySelectV variables create an event listener that updates the city options when the department is selected. 
+The findExistingQuoteV function searches for an existing insurance quote that matches the user's vehicle, 
+and calculateQuoteV calculates the final insurance quote based on the user's information and vehicle factors. 
+The submitButtonV variable and vInsuranceForm and variables are used to store elements on the insurance form, 
+and the selDepartmentV, selCityV, selBrandV, and selModelV variables store the user's selected options. 
+The code is designed to store the quote result as a variable instead of recalculating it every time it is needed.
+*/
+
 /**
- * @description random token for user object
- * @returns 
+ * @description create a random token for user object
+ * @returns
  */
 function randomToken() {
-  let token = Math.random()
-    .toString(36)
-    .substr(2);
-  while (token.startsWith('0')) {
+  let token = Math.random().toString(36).substr(2);
+  while (token.startsWith("0")) {
     token = token.substr(1);
   }
   return parseInt(token, 36);
@@ -25,7 +37,7 @@ let user = {
   city: "",
   zip: "",
   vehicle: [{ brand: "", model: "", year: 0 }],
-  insurancesV: []
+  insurancesV: [],
 };
 
 let users = [];
@@ -77,6 +89,7 @@ const departments = {
   TreintayTres: ["TreintayTres"],
 };
 
+//
 const departmentSelectV = document.getElementById("vInsuranceDepartment");
 const citySelectV = document.getElementById("vInsuranceCity");
 
@@ -92,8 +105,8 @@ departmentSelectV.addEventListener("change", () => {
 });
 
 /**
- * @description 
- * @returns 
+ * @description
+ * @returns
  */
 const findExistingQuoteV = () => {
   for (const quote of user.insurancesV) {
@@ -108,7 +121,7 @@ const findExistingQuoteV = () => {
   return null;
 };
 
-
+// calculating a quote for vehicle insurance based on factors.
 const calculateQuoteV = () => {
   user.age = parseInt(user.age, 10);
   user.vehicle.year = parseInt(user.vehicle.year, 10);
@@ -117,7 +130,8 @@ const calculateQuoteV = () => {
   let yearFactor =
     factorsV.year[user.vehicle.year <= 2018 ? "1950-2018" : "2019+"];
   let modelFactor = factorsV.model[user.vehicle.model] || 0.1;
-  const finalPriceV = 5 * (ageFactor + brandFactor + yearFactor + modelFactor).toFixed(2);
+  const finalPriceV =
+    5 * (ageFactor + brandFactor + yearFactor + modelFactor).toFixed(2);
   const now = new Date();
   let existingQuote = findExistingQuoteV();
   if (existingQuote !== null) {
@@ -224,18 +238,20 @@ submitButtonV.addEventListener("click", (e) => {
     department: selDepartmentV.value,
     city: selCityV.value,
     zip: vInsuranceForm.elements.zip.value,
-    vehicle: [{
-      brand: selBrandV.value,
-      model: selModelV.value,
-      year: vInsuranceForm.elements.year.value
-    }],
-    insurancesV: []
+    vehicle: [
+      {
+        brand: selBrandV.value,
+        model: selModelV.value,
+        year: vInsuranceForm.elements.year.value,
+      },
+    ],
+    insurancesV: [],
   };
   // calculate the quote and add it to the new user object
   let quote = {
     price: calculateQuoteV(),
-    date: new Date().toLocaleString()
-  };  
+    date: new Date().toLocaleString(),
+  };
 
   newUser.insurancesV.push(quote);
   // add the new user object to the users array
@@ -259,11 +275,13 @@ submitButtonV.addEventListener("click", (e) => {
       department: user.department,
       city: user.city,
       zip: user.zip,
-      vehicle: [{
-        brand: user.vehicle.brand,
-        model: user.vehicle.model,
-        year: user.vehicle.year,
-      }],
+      vehicle: [
+        {
+          brand: user.vehicle.brand,
+          model: user.vehicle.model,
+          year: user.vehicle.year,
+        },
+      ],
       insurancesV: [],
     })
   );
@@ -306,22 +324,22 @@ submitButtonV.addEventListener("click", (e) => {
     console.log("Cotización generada exitosamente");
   });
 
-// get the button and result elements
-const showInsurancesButton = document.getElementById("show-insurances");
-const resultElement = document.getElementById("result");
+  // get the button and result elements
+  const showInsurancesButton = document.getElementById("show-insurances");
+  const resultElement = document.getElementById("result");
 
-// add an event listener to the button element
-showInsurancesButton.addEventListener("click", () => {
-  // get the quotes from the user object
-  const quotes = user.insurancesV;
+  // add an event listener to the button element
+  showInsurancesButton.addEventListener("click", () => {
+    // get the quotes from the user object
+    const quotes = user.insurancesV;
 
-  // create a list of quote strings
-  const quoteStrings = quotes.map(
-    (quote) =>
-      `Usuario: ${quote.name} ${quote.surname}. Vehiculo: ${quote.brand} - ${quote.model} - ${quote.year}. Cotización: U$S ${quote.price} (anual). Fecha: ${quote.date}`
-  );
-  // update the result element with the quote strings and show it
-  resultElement.innerHTML = `
+    // create a list of quote strings
+    const quoteStrings = quotes.map(
+      (quote) =>
+        `Usuario: ${quote.name} ${quote.surname}. Vehiculo: ${quote.brand} - ${quote.model} - ${quote.year}. Cotización: U$S ${quote.price} (anual). Fecha: ${quote.date}`
+    );
+    // update the result element with the quote strings and show it
+    resultElement.innerHTML = `
     <div class="list-group">
     <ul>
       ${quoteStrings
@@ -333,14 +351,16 @@ showInsurancesButton.addEventListener("click", () => {
     </div>
     <button id="delete-insurances" class="btn btn-danger mt-2">Ocultar cotizaciones</button>
   `;
-  resultElement.style.display = "block";
+    resultElement.style.display = "block";
 
-  // add an event listener to the delete button
-  const deleteInsurancesButton = document.getElementById("delete-insurances");
-  deleteInsurancesButton.addEventListener("click", () => {
-    // clear the result element
-    resultElement.innerHTML = "";
-    // show a success message using SweetAlert
+    // add an event listener to the delete button
+    const deleteInsurancesButton = document.getElementById("delete-insurances");
+    deleteInsurancesButton.addEventListener("click", () => {
+      // clear the result element
+      resultElement.innerHTML = "";
+      // show a success message using SweetAlert
+    });
   });
 });
-});
+
+

@@ -1,3 +1,6 @@
+// This code contains functions and objects to calculate insurance quotes for states in Uruguay. 
+
+// generates a random token using the Math.random() function and converting it to a base-36 string with the toString() method. 
 function randomToken() {
   let token = Math.random().toString(36).substr(2);
   while (token.startsWith("0")) {

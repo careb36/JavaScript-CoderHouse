@@ -1,8 +1,12 @@
+/**
+This code defines an object user which stores user data and their vehicle data, defines an object factorsM 
+with factors used in functions to calculate and store insurance quotes for the user's motorcycle, 
+and an event listener to update the city options when a department is selected.
+ */
+
 function randomToken() {
-  let token = Math.random()
-    .toString(36)
-    .substr(2);
-  while (token.startsWith('0')) {
+  let token = Math.random().toString(36).substr(2);
+  while (token.startsWith("0")) {
     token = token.substr(1);
   }
   return parseInt(token, 36);
@@ -30,7 +34,7 @@ let user = {
 
 let users = [];
 
-// I use objects to store the factorsM : age, brand, year, model. 
+// I use objects to store the factorsM : age, brand, year, model.
 // This factorsM are used to calculate the final price of the insurance.
 const factorsM = {
   age: {
@@ -66,29 +70,29 @@ const factorsM = {
 
 // departments object to store the departments and cities.
 const departments = {
-  Artigas: ['Artigas'],
-  Canelones: ['Canelones'],
-  CerroLargo: ['Melo'],
-  Colonia: ['Colonia'],
-  Durazno: ['Durazno'],
-  Flores: ['Trinidad'],
-  Florida: ['Florida'],
-  Lavalleja: ['Minas'],
-  Maldonado: ['Maldonado'],
-  Montevideo: ['Montevideo'],
-  Paysandú: ['Paysandú'],
-  RíoNegro: ['FrayBentos'],
-  Rivera: ['Rivera'],
-  Rocha: ['Rocha'],
-  Salto: ['Salto'],
-  SanJosé: ['SanJosé'],
-  Soriano: ['Mercedes'],
-  Tacuarembó: ['Tacuarembó'],
-  TreintayTres: ['TreintayTres'],
+  Artigas: ["Artigas"],
+  Canelones: ["Canelones"],
+  CerroLargo: ["Melo"],
+  Colonia: ["Colonia"],
+  Durazno: ["Durazno"],
+  Flores: ["Trinidad"],
+  Florida: ["Florida"],
+  Lavalleja: ["Minas"],
+  Maldonado: ["Maldonado"],
+  Montevideo: ["Montevideo"],
+  Paysandú: ["Paysandú"],
+  RíoNegro: ["FrayBentos"],
+  Rivera: ["Rivera"],
+  Rocha: ["Rocha"],
+  Salto: ["Salto"],
+  SanJosé: ["SanJosé"],
+  Soriano: ["Mercedes"],
+  Tacuarembó: ["Tacuarembó"],
+  TreintayTres: ["TreintayTres"],
 };
 
-const departmentSelectM = document.getElementById('mInsuranceDepartment');
-const citySelectM = document.getElementById('mInsuranceCity');
+const departmentSelectM = document.getElementById("mInsuranceDepartment");
+const citySelectM = document.getElementById("mInsuranceCity");
 
 /**
  * @description This function makes that cities are added when the department is selected.
@@ -102,8 +106,8 @@ departmentSelectM.addEventListener("change", () => {
 });
 
 /**
- * @description 
- * @returns 
+ * @description
+ * @returns
  */
 const findExistingQuoteM = () => {
   for (const quote of user.insurancesM) {
@@ -126,7 +130,8 @@ const calculateQuoteM = () => {
   let yearFactor =
     factorsM.year[user.motorcycle.year <= 2018 ? "1950-2018" : "2019+"];
   let modelFactor = factorsM.model[user.motorcycle.model] || 0.1;
-  const finalPriceM = 5 * (ageFactor + brandFactor + yearFactor + modelFactor).toFixed(2);
+  const finalPriceM =
+    5 * (ageFactor + brandFactor + yearFactor + modelFactor).toFixed(2);
   const now = new Date();
   let existingQuote = findExistingQuoteM();
   if (existingQuote !== null) {
@@ -147,7 +152,6 @@ const calculateQuoteM = () => {
   }
   return quoteResultM;
 };
-
 
 const submitButtonM = document.querySelector("#submitButtonM"); // Get the specific submit button element using its id
 const mInsuranceForm = document.querySelector("#mInsurance"); // Get the form elements using its id
@@ -177,7 +181,7 @@ if (storedUserM) {
   selBrandM.value = storedUserM.motorcycle.brand;
   selModelM.value = storedUserM.motorcycle.model;
   mInsuranceForm.elements.year.value = storedUserM.motorcycle.year;
-}else {
+} else {
   localStorage.setItem("userStorageM", JSON.stringify(user));
 }
 
@@ -225,27 +229,27 @@ submitButtonM.addEventListener("click", (e) => {
 
   let newUser = {
     id: randomToken(),
-  name: "",
-  surname: "",
-  age: 0,
-  tel: "",
-  email: "",
-  address: "",
-  department: "",
-  city: "",
-  zip: "",
-  motorcycle: {
-    brand: "",
-    model: "",
-    year: 0,
-  },
-  insurancesM: [],
+    name: "",
+    surname: "",
+    age: 0,
+    tel: "",
+    email: "",
+    address: "",
+    department: "",
+    city: "",
+    zip: "",
+    motorcycle: {
+      brand: "",
+      model: "",
+      year: 0,
+    },
+    insurancesM: [],
   };
   // calculate the quote and add it to the new user object
   let quote = {
     price: calculateQuoteM(),
-    date: new Date().toLocaleString()
-  };  
+    date: new Date().toLocaleString(),
+  };
 
   newUser.insurancesM.push(quote);
   // add the new user object to the users array
@@ -255,103 +259,100 @@ submitButtonM.addEventListener("click", (e) => {
   // reset the form
   mInsuranceForm.reset();
 
-
   // Store the user object in local storage
   localStorage.setItem(
     "userStorageM",
     JSON.stringify({
       id: randomToken(),
-  name: "",
-  surname: "",
-  age: 0,
-  tel: "",
-  email: "",
-  address: "",
-  department: "",
-  city: "",
-  zip: "",
-  motorcycle: {
-    brand: "",
-    model: "",
-    year: 0,
-  },
-  insurancesM: [],      
+      name: "",
+      surname: "",
+      age: 0,
+      tel: "",
+      email: "",
+      address: "",
+      department: "",
+      city: "",
+      zip: "",
+      motorcycle: {
+        brand: "",
+        model: "",
+        year: 0,
+      },
+      insurancesM: [],
     })
   );
 
-// Function to show the loading animation and calculate the quote
-function showLoadingAndCalculateQuote() {
-  return new Promise((resolve, reject) => {
-    // Show loading animation for 2 seconds
-    Swal.fire({
-      title: "Cotizando",
-      html: "Estamos procesando tu cotización...",
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-      },
-    }).then(() => {
-      // Calculate the quote only once, instead of being recalculated every time the modal is shown
-      if (!quoteResultM) {
-        let finalPriceM = Math.round(calculateQuoteV());
-        quoteResultM = `El precio de tu seguro es de U$S${finalPriceM} anuales.`;
-      }
-      // Show SweetAlert with the quote result
+  // Function to show the loading animation and calculate the quote
+  function showLoadingAndCalculateQuote() {
+    return new Promise((resolve, reject) => {
+      // Show loading animation for 2 seconds
       Swal.fire({
-        icon: "success",
-        title: "Cotización generada",
-        html: `<p>La cotizacion de su seguro tiene un valor anual de U$S ${quoteResultM}</p>`,
+        title: "Cotizando",
+        html: "Estamos procesando tu cotización...",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+        },
       }).then(() => {
-        // Resolve the promise when the SweetAlert is closed
-        resolve();
+        // Calculate the quote only once, instead of being recalculated every time the modal is shown
+        if (!quoteResultM) {
+          let finalPriceM = Math.round(calculateQuoteV());
+          quoteResultM = `El precio de tu seguro es de U$S${finalPriceM} anuales.`;
+        }
+        // Show SweetAlert with the quote result
+        Swal.fire({
+          icon: "success",
+          title: "Cotización generada",
+          html: `<p>La cotizacion de su seguro tiene un valor anual de U$S ${quoteResultM}</p>`,
+        }).then(() => {
+          // Resolve the promise when the SweetAlert is closed
+          resolve();
+        });
       });
     });
+  }
+
+  // Call the function without reloading the page when it is resolved
+  showLoadingAndCalculateQuote().then(() => {
+    console.log("Cotización generada exitosamente");
   });
-}
 
-// Call the function without reloading the page when it is resolved
-showLoadingAndCalculateQuote().then(() => {
-  console.log("Cotización generada exitosamente");
-});
+  // get the button and result elements
+  const showInsurancesButton = document.getElementById("show-insurances");
+  const resultElement = document.getElementById("result");
 
-// get the button and result elements
-const showInsurancesButton = document.getElementById("show-insurances");
-const resultElement = document.getElementById("result");
+  // add an event listener to the button element
+  showInsurancesButton.addEventListener("click", () => {
+    // get the quotes from the user object
+    const quotes = user.insurancesM;
 
-// add an event listener to the button element
-showInsurancesButton.addEventListener("click", () => {
-// get the quotes from the user object
-const quotes = user.insurancesM;
-
-// create a list of quote strings
-const quoteStrings = quotes.map(
-  (quote) =>
-    `Usuario: ${quote.name} ${quote.surname}. Motocicleta: ${quote.brand} - ${quote.model} - ${quote.year}. Cotización: U$S ${quote.price} (anual). Fecha: ${quote.date}`
-);
-// update the result element with the quote strings and show it
-resultElement.innerHTML = `
+    // create a list of quote strings
+    const quoteStrings = quotes.map(
+      (quote) =>
+        `Usuario: ${quote.name} ${quote.surname}. Motocicleta: ${quote.brand} - ${quote.model} - ${quote.year}. Cotización: U$S ${quote.price} (anual). Fecha: ${quote.date}`
+    );
+    // update the result element with the quote strings and show it
+    resultElement.innerHTML = `
   <div class="list-group">
   <ul>
     ${quoteStrings
-      .map(
-        (quoteString) => `<div class="list-group-item">${quoteString}</div>`
-      )
+      .map((quoteString) => `<div class="list-group-item">${quoteString}</div>`)
       .join("")}
   </ul>
   </div>
   <button id="delete-insurances" class="btn btn-danger mt-2">Ocultar cotizaciones</button>
 `;
-resultElement.style.display = "block";
+    resultElement.style.display = "block";
 
-// add an event listener to the delete button
-const deleteInsurancesButton = document.getElementById("delete-insurances");
-deleteInsurancesButton.addEventListener("click", () => {
-  // clear the result element
-  resultElement.innerHTML = "";
-  // show a success message using SweetAlert
-});
-});
+    // add an event listener to the delete button
+    const deleteInsurancesButton = document.getElementById("delete-insurances");
+    deleteInsurancesButton.addEventListener("click", () => {
+      // clear the result element
+      resultElement.innerHTML = "";
+      // show a success message using SweetAlert
+    });
+  });
 });
