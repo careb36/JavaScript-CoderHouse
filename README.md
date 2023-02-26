@@ -86,8 +86,6 @@ En esta entrega se presenta un video que muestra un sitio web creado según los 
 - Ciclos e iteraciones.
 - Funciones.
 
-👉 [Ver video en YouTube sobre la pre-entrega](https://youtu.be/7t9aAhskFQg)
-
 ## Segunda entrega - 24-01-23
 
 En esta etapa se solicita la entrega de la estructura del proyecto, las variables necesarias y los objetos de JS.
