@@ -4,9 +4,6 @@
   <a href="https://262.ecma-international.org/13.0/">
     <img alt="JavaScript" src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*4psuHMMvI6mbH-g1brkXfg.png" width="500">
   </a>
-  <a href="https://www.coderhouse.com">
-    <img alt="CoderHouse" src="https://scontent.fmvd4-1.fna.fbcdn.net/v/t39.30808-6/259450704_5263897886958320_6900787951833542274_n.png?_nc_cat=1&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=c1Luoa9B2uMAX83rbKC&_nc_ht=scontent.fmvd4-1.fna&oh=00_AfBXkfhauMapiMa5LX3cDCaeXjkmeIqgFar9v8wiIM8WUw&oe=63F86BEF" width="300">
-  </a>
 </p>
 
 ---
